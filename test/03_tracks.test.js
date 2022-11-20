@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../app");
-const { tokenSign } = require("../utils/handleJwt");
-const { usersModel, storageModel, tracksModel } = require("../models");
+const { tokenSign } = require("../src/database/utils/handleJwt");
+const { usersModel, storageModel, tracksModel } = require("../src/database/models/users");
 const {
   testAuthRegisterAdmin,
   testDataTrack,

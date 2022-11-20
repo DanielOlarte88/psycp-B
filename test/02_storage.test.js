@@ -1,9 +1,9 @@
 const request = require("supertest");
 const app = require("../app");
-const { tokenSign } = require("../utils/handleJwt");
+const { tokenSign } = require("../src/database/utils/handleJwt");
 const { testAuthRegister } = require("./helper/helperData")
-const { usersModel } = require("../models");
-const { storageModel } = require("../models");
+const { usersModel } = require("../src/database/models/users");
+const { storageModel } = require("../src/database/models/storage");
 let JWT_TOKEN = "";
 const filePath = `${__dirname}/dump/track.mp3`;
 

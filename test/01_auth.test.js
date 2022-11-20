@@ -1,6 +1,6 @@
 const request = require("supertest");
 const app = require("../app");
-const { usersModel } = require("../models");
+const { usersModel } = require("../src/database/models/users");
 const { testAuthLogin, testAuthRegister } = require("./helper/helperData");
 
 beforeAll(async () => {

@@ -13,11 +13,11 @@ const MentalCareers = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    activate:{
+    activate: {
       type: DataTypes.TINYINT,
       defaultValue: 1,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     timestamps: true,

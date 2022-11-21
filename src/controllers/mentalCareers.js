@@ -54,19 +54,6 @@ const updateItem = async (req, res) => {
   }
 };
 
-// const updateItem = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const mental_careers_id = id;
-//     const body = req.body;
-//     const data = await mentalCareersModel.update(mental_careers_id, body);
-//     res.status(500);
-//     res.send({ data });
-//   } catch (e) {
-//     handleHttpError(res, "ERROR_UPDATE_ITEMS");
-//   }
-// };
-
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;

@@ -1,10 +1,10 @@
-const { statusLicensesModel } = require("../database/models");
+const { patientsModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
-    const data = await statusLicensesModel.findAll({});
+    const data = await patientsModel.findAll({});
     res.send({ data, user });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const status_licenses_id = id;
-    const data = await statusLicensesModel.findOne({
+    const patients_id = id;
+    const data = await patientsModel.findOne({
       where: {
-        status_licenses_id,
+        patients_id,
       },
     });
     res.send({ data });
@@ -30,7 +30,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await statusLicensesModel.create(body);
+    const data = await patientsModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -41,10 +41,11 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const status_licenses_id = id;
-    const { status_licenses, activate } = req.body;
-    const data = await statusLicensesModel.findByPk(status_licenses_id);
-    data.status_licenses = status_licenses;
+    const patients_id = id;
+    const { persons_persons_id, patients_internal_code, activate } = req.body;
+    const data = await patientsModel.findByPk(patients_id);
+    data.persons_persons_id = persons_persons_id;
+    data.patients_internal_code = patients_internal_code;
     data.activate = activate;
     await data.save();
     res.status(500);
@@ -57,10 +58,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const status_licenses_id = id;
-    const data = await statusLicensesModel.destroy({
+    const patients_id = id;
+    const data = await patientsModel.destroy({
       where: {
-        status_licenses_id,
+        patients_id,
       },
     });
     res.status(204);

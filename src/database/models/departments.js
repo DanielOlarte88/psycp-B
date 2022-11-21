@@ -1,15 +1,16 @@
 const { sequelize } = require("../../database/config/mysql");
 const { DataTypes } = require("sequelize");
 
-const StatusLicenses = sequelize.define(
-  "status_licenses",
+const Departments = sequelize.define(
+  "departments",
   {
-    status_licenses_id: {
+    departments_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      unique: true,
     },
-    status_licenses: {
+    departments: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,4 +25,4 @@ const StatusLicenses = sequelize.define(
   }
 );
 
-module.exports = StatusLicenses;
+module.exports = Departments;

@@ -1,10 +1,10 @@
-const { statusLicensesModel } = require("../database/models");
+const { provincesModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
-    const data = await statusLicensesModel.findAll({});
+    const data = await provincesModel.findAll({});
     res.send({ data, user });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const status_licenses_id = id;
-    const data = await statusLicensesModel.findOne({
+    const provinces_id = id;
+    const data = await provincesModel.findOne({
       where: {
-        status_licenses_id,
+        provinces_id,
       },
     });
     res.send({ data });
@@ -30,7 +30,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await statusLicensesModel.create(body);
+    const data = await provincesModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -41,10 +41,10 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const status_licenses_id = id;
-    const { status_licenses, activate } = req.body;
-    const data = await statusLicensesModel.findByPk(status_licenses_id);
-    data.status_licenses = status_licenses;
+    const provinces_id = id;
+    const { provinces, activate } = req.body;
+    const data = await provincesModel.findByPk(provinces_id);
+    data.provinces = provinces;
     data.activate = activate;
     await data.save();
     res.status(500);
@@ -57,10 +57,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const status_licenses_id = id;
-    const data = await statusLicensesModel.destroy({
+    const provinces_id = id;
+    const data = await provincesModel.destroy({
       where: {
-        status_licenses_id,
+        provinces_id,
       },
     });
     res.status(204);

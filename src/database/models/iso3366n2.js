@@ -1,15 +1,20 @@
 const { sequelize } = require("../../database/config/mysql");
 const { DataTypes } = require("sequelize");
 
-const StatusLicenses = sequelize.define(
-  "status_licenses",
+const Iso3366n2 = sequelize.define(
+  "iso3366_2",
   {
-    status_licenses_id: {
+    ISO3366_2_alfa2: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
+      allowNull: false,
+      unique: true,
     },
-    status_licenses: {
+    ISO3366_2: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    ISO3366_1_ISO3366_1_alfa2: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,4 +29,4 @@ const StatusLicenses = sequelize.define(
   }
 );
 
-module.exports = StatusLicenses;
+module.exports = Iso3366n2;

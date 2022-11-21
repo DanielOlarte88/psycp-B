@@ -4,77 +4,79 @@ const { DataTypes } = require("sequelize");
 const User = sequelize.define(
   "users",
   {
-    users_id:{
+    users_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
-    users_identification_num:{
+    users_identification_num: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
-    users_first_name:{
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    users_second_name:{
-      type: DataTypes.STRING,
-    },
-    users_third_name:{
-      type: DataTypes.STRING,
-    },
-    users_first_surname:{
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    users_second_surname:{
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    users_cellphone:{
+    users_first_name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
     },
-    users_license_num:{
+    users_second_name: {
+      type: DataTypes.STRING,
+    },
+    users_third_name: {
+      type: DataTypes.STRING,
+    },
+    users_first_surname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    users_second_surname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    users_cellphone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    users_license_num: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true
+      unique: true,
     },
-    users_terms:{
+    users_terms: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: false,
     },
-    users_internal_code:{
+    users_internal_code: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     email: {
       type: String,
-      unique: true
+      allowNull: false,
+      unique: true,
     },
     password: {
-      type: String
+      type: String,
+      allowNull: false,
     },
-    mental_careers_mental_careers_id:{
+    mental_careers_mental_careers_id: {
       type: DataTypes.TINYINT,
-      allowNull: false
+      allowNull: false,
     },
-    status_licenses_status_licenses_id:{
+    status_licenses_status_licenses_id: {
       type: DataTypes.TINYINT,
-      allowNull: false
+      allowNull: false,
     },
     users_role: {
       type: DataTypes.ENUM(["profess", "patient", "admin"]),
-      allowNull: false
+      allowNull: false,
     },
-    activate:{
+    activate: {
       type: DataTypes.TINYINT,
       defaultValue: 1,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     timestamps: true,

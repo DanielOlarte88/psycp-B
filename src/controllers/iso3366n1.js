@@ -1,10 +1,10 @@
-const { statusLicensesModel } = require("../database/models");
+const { iso3366n1Model } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
-    const data = await statusLicensesModel.findAll({});
+    const data = await iso3366n1Model.findAll({});
     res.send({ data, user });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const status_licenses_id = id;
-    const data = await statusLicensesModel.findOne({
+    const iso3366_1_id = id;
+    const data = await iso3366n1Model.findOne({
       where: {
-        status_licenses_id,
+        iso3366_1_id,
       },
     });
     res.send({ data });
@@ -30,7 +30,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await statusLicensesModel.create(body);
+    const data = await iso3366n1Model.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -41,10 +41,10 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const status_licenses_id = id;
-    const { status_licenses, activate } = req.body;
-    const data = await statusLicensesModel.findByPk(status_licenses_id);
-    data.status_licenses = status_licenses;
+    const iso3366_1_id = id;
+    const { iso3366_1, activate } = req.body;
+    const data = await iso3366n1Model.findByPk(iso3366_1_id);
+    data.iso3366_1 = iso3366_1;
     data.activate = activate;
     await data.save();
     res.status(500);
@@ -57,10 +57,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const status_licenses_id = id;
-    const data = await statusLicensesModel.destroy({
+    const iso3366_1_id = id;
+    const data = await iso3366n1Model.destroy({
       where: {
-        status_licenses_id,
+        iso3366_1_id,
       },
     });
     res.status(204);

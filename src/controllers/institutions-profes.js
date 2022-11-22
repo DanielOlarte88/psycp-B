@@ -1,10 +1,10 @@
-const { eduInstitutionsModel } = require("../database/models");
+const { institutions_profesModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
-    const data = await eduInstitutionsModel.findAll({});
+    const data = await institutions_profesModel.findAll({});
     res.send({ data, user });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
-    const data = await eduInstitutionsModel.findOne({
+    const institutions_profes_id = id;
+    const data = await institutions_profesModel.findOne({
       where: {
-        edu_institutions_id,
+        institutions_profes_id,
       },
     });
     res.send({ data });
@@ -30,7 +30,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await eduInstitutionsModel.create(body);
+    const data = await institutions_profesModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -41,16 +41,24 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
+    const institutions_profes_id = id;
     const { 
-      edu_institutions,
-      edu_institutions_type,
-      edu_institutions_ubigeo,
+      institutions_institutions_id,
+      profes_profes_id,
+      institutions_user_internal_code,
+      institutions_user_email,
+      institutions_user_password,
+      institutions_user_state,
+      institutions_user_mode,
       activate } = req.body;
-    const data = await eduInstitutionsModel.findByPk(edu_institutions_id);
-    data.edu_institutions = edu_institutions;
-    data.edu_institutions_type = edu_institutions_type;
-    data.edu_institutions_ubigeo = edu_institutions_ubigeo;
+    const data = await institutions_profesModel.findByPk(institutions_profes_id);
+    data.institutions_institutions_id = institutions_institutions_id;
+    data.profes_profes_id = profes_profes_id;
+    data.institutions_user_internal_code = institutions_user_internal_code;
+    data.institutions_user_email = institutions_user_email;
+    data.institutions_user_password = institutions_user_password;
+    data.institutions_user_state = institutions_user_state;
+    data.institutions_user_mode = institutions_user_mode;
     data.activate = activate;
     await data.save();
     res.status(500);
@@ -63,10 +71,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
-    const data = await eduInstitutionsModel.destroy({
+    const institutions_profes_id = id;
+    const data = await institutions_profesModel.destroy({
       where: {
-        edu_institutions_id,
+        institutions_profes_id,
       },
     });
     res.status(204);

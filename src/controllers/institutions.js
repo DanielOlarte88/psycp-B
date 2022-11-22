@@ -1,10 +1,10 @@
-const { eduInstitutionsModel } = require("../database/models");
+const { institutionsModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
-    const data = await eduInstitutionsModel.findAll({});
+    const data = await institutionsModel.findAll({});
     res.send({ data, user });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
-    const data = await eduInstitutionsModel.findOne({
+    const institutions_id = id;
+    const data = await institutionsModel.findOne({
       where: {
-        edu_institutions_id,
+        institutions_id,
       },
     });
     res.send({ data });
@@ -30,7 +30,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await eduInstitutionsModel.create(body);
+    const data = await institutionsModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -41,16 +41,21 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
+    const institutions_id = id;
     const { 
-      edu_institutions,
-      edu_institutions_type,
-      edu_institutions_ubigeo,
-      activate } = req.body;
-    const data = await eduInstitutionsModel.findByPk(edu_institutions_id);
-    data.edu_institutions = edu_institutions;
-    data.edu_institutions_type = edu_institutions_type;
-    data.edu_institutions_ubigeo = edu_institutions_ubigeo;
+      institutions_order, 
+      institutions, 
+      institutions_type, 
+      institutions_sector, 
+      institutions_ubigeo, 
+      activate 
+    } = req.body;
+    const data = await institutionsModel.findByPk(institutions_id);
+    data.institutions_order = institutions_order;
+    data.institutions = institutions;
+    data.institutions_type = institutions_type;
+    data.institutions_sector = institutions_sector;
+    data.institutions_ubigeo = institutions_ubigeo;
     data.activate = activate;
     await data.save();
     res.status(500);
@@ -63,10 +68,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
-    const data = await eduInstitutionsModel.destroy({
+    const institutions_id = id;
+    const data = await institutionsModel.destroy({
       where: {
-        edu_institutions_id,
+        institutions_id,
       },
     });
     res.status(204);

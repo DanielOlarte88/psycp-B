@@ -1,24 +1,21 @@
 const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
 
-const EduInstitutions = sequelize.define(
-  "edu_institutions",
+const Themes = sequelize.define(
+  "themes",
   {
-    edu_institutions_id: {
-      type: DataTypes.INTEGER,
+    themes_id: {
+      type: DataTypes.SMALLINT,
       primaryKey: true,
       autoIncrement: true,
+      unique: true,
     },
-    edu_institutions: {
+    themes: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    edu_institutions_type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    edu_institutions_ubigeo: {
-      type: DataTypes.STRING,
+    themes_groups_themes_groups_id: {
+      type: DataTypes.SMALLINT,
       allowNull: false,
     },
     activate: {
@@ -32,4 +29,4 @@ const EduInstitutions = sequelize.define(
   }
 );
 
-module.exports = EduInstitutions;
+module.exports = Themes;

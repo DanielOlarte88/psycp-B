@@ -1,10 +1,10 @@
-const { eduInstitutionsModel } = require("../database/models");
+const { themesModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
-    const data = await eduInstitutionsModel.findAll({});
+    const data = await themesModel.findAll({});
     res.send({ data, user });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
-    const data = await eduInstitutionsModel.findOne({
+    const themes_id = id;
+    const data = await themesModel.findOne({
       where: {
-        edu_institutions_id,
+        themes_id,
       },
     });
     res.send({ data });
@@ -30,7 +30,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await eduInstitutionsModel.create(body);
+    const data = await themesModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -41,16 +41,11 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
-    const { 
-      edu_institutions,
-      edu_institutions_type,
-      edu_institutions_ubigeo,
-      activate } = req.body;
-    const data = await eduInstitutionsModel.findByPk(edu_institutions_id);
-    data.edu_institutions = edu_institutions;
-    data.edu_institutions_type = edu_institutions_type;
-    data.edu_institutions_ubigeo = edu_institutions_ubigeo;
+    const themes_id = id;
+    const { themes, themes_groups_themes_groups_id, activate } = req.body;
+    const data = await themesModel.findByPk(themes_id);
+    data.themes = themes;
+    data.themes_groups_themes_groups_id = themes_groups_themes_groups_id;
     data.activate = activate;
     await data.save();
     res.status(500);
@@ -63,10 +58,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
-    const data = await eduInstitutionsModel.destroy({
+    const themes_id = id;
+    const data = await themesModel.destroy({
       where: {
-        edu_institutions_id,
+        themes_id,
       },
     });
     res.status(204);

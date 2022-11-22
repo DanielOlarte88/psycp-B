@@ -1,10 +1,10 @@
-const { eduInstitutionsModel } = require("../database/models");
+const { clinicalHistoriesModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
-    const data = await eduInstitutionsModel.findAll({});
+    const data = await clinicalHistoriesModel.findAll({});
     res.send({ data, user });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
-    const data = await eduInstitutionsModel.findOne({
+    const clinicalHistories_id = id;
+    const data = await clinicalHistoriesModel.findOne({
       where: {
-        edu_institutions_id,
+        clinicalHistories_id,
       },
     });
     res.send({ data });
@@ -30,7 +30,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await eduInstitutionsModel.create(body);
+    const data = await clinicalHistoriesModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -41,16 +41,19 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
+    const clinicalHistories_id = id;
     const { 
-      edu_institutions,
-      edu_institutions_type,
-      edu_institutions_ubigeo,
-      activate } = req.body;
-    const data = await eduInstitutionsModel.findByPk(edu_institutions_id);
-    data.edu_institutions = edu_institutions;
-    data.edu_institutions_type = edu_institutions_type;
-    data.edu_institutions_ubigeo = edu_institutions_ubigeo;
+      hcp_internal_code,
+      patients_has_user_states_patients_patients_id,
+      patients_has_user_states_patients_persons_persons_id,
+      patients_has_user_states_user_states_user_states_id,
+      activate 
+    } = req.body;
+    const data = await clinicalHistoriesModel.findByPk(clinicalHistories_id);
+    data.hcp_internal_code = hcp_internal_code;
+    data.patients_has_user_states_patients_persons_persons_id = patients_has_user_states_patients_persons_persons_id;
+    data.patients_has_user_states_patients_patients_id = patients_has_user_states_patients_patients_id;
+    data.patients_has_user_states_user_states_user_states_id = patients_has_user_states_user_states_user_states_id;
     data.activate = activate;
     await data.save();
     res.status(500);
@@ -63,10 +66,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const edu_institutions_id = id;
-    const data = await eduInstitutionsModel.destroy({
+    const clinicalHistories_id = id;
+    const data = await clinicalHistoriesModel.destroy({
       where: {
-        edu_institutions_id,
+        clinicalHistories_id,
       },
     });
     res.status(204);

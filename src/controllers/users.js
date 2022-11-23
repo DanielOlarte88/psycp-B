@@ -3,9 +3,9 @@ const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
-    const users = req.users;
+    const person = req.person;
     const data = await usersModel.findAll({});
-    res.send({ data, users });
+    res.send({ data, person });
   } catch (e) {
     console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
@@ -41,39 +41,29 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const user_id = id;
+    const users_id = id;
     const { 
-      users_identification_num,
-      users_first_name,
-      users_second_name,
-      users_third_name,
-      users_first_surname,
-      users_second_surname,
-      users_cellphone,
-      users_license_num,
-      users_terms,
-      email,
-      password,
-      mental_careers_mental_careers_id,
-      status_licenses_status_licenses_id,
-      users_role,
+      users_surnames_order_reverse,
+      users_birth_date,
+      users_birth_hour,
+      users_birth_iso3366,
+      users_birth_ubigeo,
+      users_residence_iso3366,
+      users_residence_ubigeo,
+      birth_sexes_birth_sexes_id,
+      persons_persons_id,
       activate 
     } = req.body;
-    const data = await usersModel.findByPk(user_id);
-    data.users_identification_num = users_identification_num;
-    data.users_first_name = users_first_name;
-    data.users_second_name = users_second_name;
-    data.users_third_name = users_third_name;
-    data.users_first_surname = users_first_surname;
-    data.users_second_surname = users_second_surname;
-    data.users_cellphone = users_cellphone;
-    data.users_license_num = users_license_num;
-    data.users_terms = users_terms;
-    data.email = email;
-    data.password = password;
-    data.mental_careers_mental_careers_id = mental_careers_mental_careers_id;
-    data.status_licenses_status_licenses_id = status_licenses_status_licenses_id;
-    data.users_role = users_role;
+    const data = await usersModel.findByPk(users_id);
+    data.users_surnames_order_reverse = users_surnames_order_reverse;
+    data.users_birth_date = users_birth_date;
+    data.users_birth_hour = users_birth_hour;
+    data.users_birth_iso3366 = users_birth_iso3366;
+    data.users_birth_ubigeo = users_birth_ubigeo;
+    data.users_residence_iso3366 = users_residence_iso3366;
+    data.users_residence_ubigeo = users_residence_ubigeo;
+    data.birth_sexes_birth_sexes_id = birth_sexes_birth_sexes_id;
+    data.persons_persons_id = persons_persons_id;
     data.activate = activate;
     await data.save();
     res.status(500);

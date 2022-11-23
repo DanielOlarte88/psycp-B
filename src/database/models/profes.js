@@ -18,7 +18,7 @@ const Profes = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    persons_persons_id: {
+    users_users_id: {
       type: DataTypes.TIME,
       allowNull: false,
     },

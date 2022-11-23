@@ -1,8 +1,8 @@
 const models = {
-  usersModel: require(`../../database/models/users`),
+  personsModel: require(`../../database/models/persons`),
     mentalCareersModel: require(`../../database/models/mentalCareers`),
     statusLicensesModel: require(`../../database/models/statusLicenses`),
-  personsModel: require(`../../database/models/persons`),
+  usersModel: require(`../../database/models/users`),
     birthSexesModel: require(`../../database/models/birthSexes`),
     iso3366n1Model: require(`../../database/models/iso3366n1`),
     iso3366n2Model: require(`../../database/models/iso3366n2`),

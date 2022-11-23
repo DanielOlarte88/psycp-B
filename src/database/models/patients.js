@@ -10,12 +10,12 @@ const Patients = sequelize.define(
       allowNull: false,
       autoIncrement: true,
     },
-    persons_persons_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     patients_internal_code: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    users_users_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     activate: {

@@ -1,71 +1,49 @@
-const { sequelize } = require("../../database/config/mysql");
+const { sequelize } = require("../config/mysql")
 const { DataTypes } = require("sequelize");
 
-const User = sequelize.define(
+const Users = sequelize.define(
   "users",
   {
     users_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      allowNull: false,
       autoIncrement: true,
     },
-    users_identification_num: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    users_first_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    users_second_name: {
-      type: DataTypes.STRING,
-    },
-    users_third_name: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    users_first_surname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    users_second_surname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    users_cellphone: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    users_license_num: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: true,
-    },
-    users_terms: {
+    users_surnames_order_reverse: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    email: {
-      type: String,
-      allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: String,
+    users_birth_date: {
+      type: DataTypes.DATE,
       allowNull: false,
     },
-    mental_careers_mental_careers_id: {
+    users_birth_hour: {
+      type: DataTypes.TIME,
+      allowNull: false,
+    },
+    users_birth_iso3366: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    users_birth_ubigeo: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    users_residence_iso3366: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    users_residence_ubigeo: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    birth_sexes_birth_sexes_id: {
       type: DataTypes.TINYINT,
       allowNull: false,
     },
-    status_licenses_status_licenses_id: {
-      type: DataTypes.TINYINT,
-      allowNull: false,
-    },
-    users_role: {
-      type: DataTypes.ENUM(["profess", "patient", "admin"]),
+    persons_persons_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     activate: {
@@ -78,6 +56,5 @@ const User = sequelize.define(
     timestamps: true,
   }
 );
-User.find = User.findAll;
-User.findById = User.findByPk;
-module.exports = User;
+
+module.exports = Users;

@@ -20,7 +20,7 @@ router.get("/:id",
 
 router.post("/", 
   authMiddleware, 
-  checkRole(["profess", "admin"]), 
+  checkRole(["profes", "admin"]), 
   createItem
 );
 

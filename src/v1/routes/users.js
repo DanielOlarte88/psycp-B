@@ -16,7 +16,7 @@ router.get("/:id", getItem);
 
 router.post("/",
   authMiddleware,
-  checkRole(["profess", "admin"]),
+  checkRole(["profes", "admin"]),
   createItem
 );
 
@@ -29,4 +29,5 @@ router.delete("/:id",
   authMiddleware,
   deleteItem
 );
+
 module.exports = router;

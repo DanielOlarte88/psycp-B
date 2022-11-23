@@ -18,7 +18,7 @@ const Patients_UserStates = sequelize.define(
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL'
     },
-    patients_persons_persons_id: {
+    patients_users_users_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,

@@ -4,13 +4,13 @@ const { handleHttpError } = require("../database/utils/handleError");
  */
 const checkRole = (roles) => (req, res, next) => {
   try {
-    const { user } = req;
-    const rolesByUser = user.users_role; //TODO ["profess"]  //TODO: ["profess","patient","admin"]
+    const { person } = req;
+    const rolesByPerson = person.persons_role; //TODO ["profes"]  //TODO: ["profes","patient","admin"]
     const checkValueRole = roles.some((roleSingle) =>
-      rolesByUser.includes(roleSingle) //TODO: true, false
+      rolesByPerson.includes(roleSingle) //TODO: true, false
     ); 
     if (!checkValueRole) {
-      handleHttpError(res, "USER_NOT_PERMISSIONS", 403);
+      handleHttpError(res, "PERSON_NOT_PERMISSIONS", 403);
       return;
     }
     next();

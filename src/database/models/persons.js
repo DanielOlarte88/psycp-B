@@ -1,4 +1,4 @@
-const { sequelize } = require("../../database/config/mysql");
+const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
 
 const Persons = sequelize.define(
@@ -7,42 +7,64 @@ const Persons = sequelize.define(
     persons_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
       autoIncrement: true,
     },
-    persons_surnames_order_reverse: {
+    persons_first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    persons_second_name: {
+      type: DataTypes.STRING,
+    },
+    persons_third_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    persons_first_surname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    persons_second_surname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    persons_identification_num: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    persons_cellphone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    persons_license_num: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+    },
+    persons_terms: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    persons_birth_date: {
-      type: DataTypes.DATE,
+    email: {
+      type: String,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: String,
       allowNull: false,
     },
-    persons_birth_hour: {
-      type: DataTypes.TIME,
+    persons_role: {
+      type: DataTypes.ENUM(["profes", "patient", "admin"]),
       allowNull: false,
     },
-    persons_birth_iso3366: {
-      type: DataTypes.STRING,
+    mental_careers_mental_careers_id: {
+      type: DataTypes.TINYINT,
       allowNull: false,
     },
-    persons_birth_ubigeo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    persons_residence_iso3366: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    persons_residence_ubigeo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    users_users_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    birth_sexes_birth_sexes_id: {
+    status_licenses_status_licenses_id: {
       type: DataTypes.TINYINT,
       allowNull: false,
     },
@@ -56,5 +78,6 @@ const Persons = sequelize.define(
     timestamps: true,
   }
 );
-
+Persons.find = Persons.findAll;
+Persons.findById = Persons.findByPk;
 module.exports = Persons;

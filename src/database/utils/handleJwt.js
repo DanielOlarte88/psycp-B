@@ -4,11 +4,11 @@ const JWT_SECRET = process.env.JWT_SECRET;
 /**
  * Debes de pasar el objecto del usario
  */
-const tokenSign = async (user) => {
+const tokenSign = async (person) => {
   const sign = jwt.sign(
     {
-      id: user.id,
-      role: user.role,
+      id: person.id,
+      role: person.role,
     },
     JWT_SECRET,
     {

@@ -16,7 +16,7 @@ const ClinicalHistories = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    patients_has_user_states_patients_persons_persons_id: {
+    patients_has_user_states_patients_patients_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -26,7 +26,7 @@ const ClinicalHistories = sequelize.define(
       onUpdate: 'CASCADE',
       onDelete: 'SET NULL'
     },
-    patients_has_user_states_patients_patients_id: {
+    patients_has_user_states_patients_users_users_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {

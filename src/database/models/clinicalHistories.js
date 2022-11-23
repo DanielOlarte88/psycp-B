@@ -1,8 +1,6 @@
 const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
-const { personsModel } = require("../../database/models");
-const { patientsModel } = require("../../database/models");
-const { userStatesModel } = require("../../database/models");
+const { patients_userStatesModel } = require("../../database/models");
 
 const ClinicalHistories = sequelize.define(
   "clinicalHistories",
@@ -22,7 +20,7 @@ const ClinicalHistories = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: personsModel,
+        model: patients_userStatesModel,
         key: 'id'
       },
       onUpdate: 'CASCADE',
@@ -32,7 +30,7 @@ const ClinicalHistories = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: patientsModel,
+        model: patients_userStatesModel,
         key: 'id'
       },
       onUpdate: 'CASCADE',
@@ -42,7 +40,7 @@ const ClinicalHistories = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: userStatesModel,
+        model: patients_userStatesModel,
         key: 'id'
       },
       onUpdate: 'CASCADE',

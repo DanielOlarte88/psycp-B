@@ -10,23 +10,13 @@ const Institutions_HealthServices = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      references: {
-        model: institutionsModel,
-        key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL'
+
     },
     health_services_health_services_id: {
       type: DataTypes.TINYINT,
       primaryKey: true,
       allowNull: false,
-      references: {
-        model: healthServicesModel,
-        key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL'
+
     },
     activate: {
       type: DataTypes.TINYINT,

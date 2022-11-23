@@ -23,6 +23,7 @@ const User = sequelize.define(
     },
     users_third_name: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     users_first_surname: {
       type: DataTypes.STRING,
@@ -45,11 +46,6 @@ const User = sequelize.define(
     users_terms: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-    },
-    users_internal_code: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
     },
     email: {
       type: String,

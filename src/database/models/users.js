@@ -50,7 +50,7 @@ const Users = sequelize.define(
       type: DataTypes.TINYINT,
       defaultValue: 1,
       allowNull: false,
-    },
+    }
   },
   {
     timestamps: true,

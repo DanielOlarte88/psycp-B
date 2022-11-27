@@ -12,7 +12,7 @@ const Users = sequelize.define(
     },
     users_surnames_order_reverse: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
     },
     users_birth_date: {
       type: DataTypes.DATE,
@@ -24,11 +24,11 @@ const Users = sequelize.define(
     },
     users_birth_iso3366: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     users_birth_ubigeo: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     users_residence_iso3366: {
       type: DataTypes.STRING,

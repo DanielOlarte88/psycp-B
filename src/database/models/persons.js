@@ -22,7 +22,7 @@ const Persons = sequelize.define(
     },
     persons_first_surname: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     persons_second_surname: {
       type: DataTypes.STRING,

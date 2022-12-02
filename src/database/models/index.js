@@ -1,3 +1,4 @@
+
 const models = {
   personsModel: require(`../../database/models/persons`),
     mentalCareersModel: require(`../../database/models/mentalCareers`),

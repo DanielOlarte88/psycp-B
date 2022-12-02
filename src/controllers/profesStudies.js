@@ -15,11 +15,18 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const profes_studies_id = id;
-    const data = await profesStudiesModel.findOne({
+    const profes_profes_id = id;
+    const data = await profesStudiesModel.findAll({
       where: {
-        profes_studies_id,
+        profes_profes_id,
       },
+      include: [{
+        model: models.careers,
+        as: 'careers_id',
+        where: {
+          careers,
+        }
+      }]
     });
     res.send({ data });
   } catch (e) {

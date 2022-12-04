@@ -31,6 +31,36 @@ const models = {
 
   clinicalHistoriesModel: require(`../../database/models/clinicalHistories`),
 
+    reasonConsultationModel: require(`../../database/models/reasonConsultation`),
+    
+    filiationModel: require(`../../database/models/filiation`),
+      occupationModel: require(`../../database/models/occupation`),
+      maritalStatusModel: require(`../../database/models/maritalStatus`),
+      religionModel: require(`../../database/models/religion`),
+      filiationInformantModel: require(`../../database/models/filiationInformant`),
+    
+    actualConditionModel: require(`../../database/models/actualCondition`),
+      
+    intervSessionModel: require(`../../database/models/intervSession`),
+      intervSession_intervAttitudeModel: require(`../../database/models/intervSession-intervAttitude`),
+      intervAccessibilityModel: require(`../../database/models/intervAccessibility`),
+      intervAttitudeModel: require(`../../database/models/intervAttitude`),
+      intervEyeContactModel: require(`../../database/models/intervEyeContact`),
+
+    physicalAspectModel: require(`../../database/models/physicalAspect`),
+      physicalConditionModel: require(`../../database/models/physicalCondition`),
+      physicCleanlinessModel: require(`../../database/models/physicCleanliness`),
+      physicComplexionModel: require(`../../database/models/physicComplexion`),
+      physicVestmentModel: require(`../../database/models/physicVestment`),
+      physicVestmentColorModel: require(`../../database/models/physicVestmentColor`),
+
+      physicCondModel: require(`../../database/models/physicCond`),
+      
+    
+    
+    
+    
+
   
 
 

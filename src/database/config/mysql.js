@@ -12,6 +12,9 @@ const host = process.env.MYSQL_HOST;
 const sequelize = new Sequelize(database, username, password, {
   host,
   dialect: "mysql",
+  define: {
+    freezeTableName: true
+  },
 });
 
 const dbConnectMySql = async () => {

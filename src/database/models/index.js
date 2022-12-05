@@ -55,6 +55,34 @@ const models = {
       physicVestmentColorModel: require(`../../database/models/physicVestmentColor`),
 
       physicCondModel: require(`../../database/models/physicCond`),
+      physicCondBodyModel: require(`../../database/models/physicCondBody`),
+      physicCond_Body_LateralityModel: require(`../../database/models/physicCond-Body-Laterality`),
+      body_lateralityModel: require(`../../database/models/body-laterality`),
+      bodyModel: require(`../../database/models/body`),
+      physicCondSensoryModel: require(`../../database/models/physicCondSensory`),
+      physicCond_Sensory_LateralyModel: require(`../../database/models/physicCond-Sensory-Lateraly`),
+      sensory_lateralityModel: require(`../../database/models/sensory-laterality`),
+      sensoryModel: require(`../../database/models/sensory`),
+      lateralityModel: require(`../../database/models/laterality`),
+
+      physicalPsychomotricityModel: require(`../../database/models/physicalPsychomotricity`),
+      physicPsychomotBodyPositionModel: require(`../../database/models/physicPsychomotBodyPosition`),
+      physicPsychomotForwardBackModel: require(`../../database/models/physicPsychomotForwardBack`),
+      physicPsychomotRightLeftModel: require(`../../database/models/physicPsychomotRightLeft`),
+      physicPsychomotDisplaCondiModel: require(`../../database/models/physicPsychomotDisplaCondi`),
+      physicPsychomotDisplacementModel: require(`../../database/models/physicPsychomotDisplacement`),
+      physicPsychomotMuscleCondiModel: require(`../../database/models/physicPsychomotMuscleCondi`),
+      physicPsychomotMuscleToneModel: require(`../../database/models/physicPsychomotMuscleTone`),
+      physicPsychomotMotorSkillsModel: require(`../../database/models/physicPsychomotMotorSkills`),
+      physicPsychomotKinetCondiModel: require(`../../database/models/physicPsychomotKinetCondi`),
+      physicPsychomotKinetHarmo_physicPsychomotKinetCondiModel: require(`../../database/models/physicPsychomotKinetHarmo-physicPsychomotKinetCondi`),
+      physicPsychomotKinetHarmoModel: require(`../../database/models/physicPsychomotKinetHarmo`),
+      physicPsychomotSkillsTypeModel: require(`../../database/models/physicPsychomotSkillsType`),
+      levelDescriptionModel: require(`../../database/models/levelDescription`),
+      
+
+
+
       
     
     

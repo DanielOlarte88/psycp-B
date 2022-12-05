@@ -8,7 +8,7 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/reasonConsultation");
+} = require("../../controllers/physicPsychomotRightLeft");
 
 router.get("/", 
   getItems

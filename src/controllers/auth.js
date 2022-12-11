@@ -27,7 +27,7 @@ const { personsModel } = require("../database/models");
 const loginCtrl = async (req, res) => {
   try{
     req = matchedData(req);
-    const person = await personsModel.findOne({email:req.email})
+    const person = await personsModel.findOne({email: req.email})
 
     if(!person){
       handleHttpError(res, "PERSON_NOT_EXISTS", 404);
@@ -43,7 +43,7 @@ const loginCtrl = async (req, res) => {
       return
     }
 
-    person.set('password', undefined, {strict:false})
+    person.set('password', undefined, {strict: false})
     const data = {
       token: await tokenSign(person),
       person

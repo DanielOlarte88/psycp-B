@@ -1,10 +1,10 @@
-const { departmentsModel } = require("../database/models");
+const { bondModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const person = req.person;
-    const data = await departmentsModel.findAll({});
+    const data = await bondModel.findAll({});
     res.send({ data, person });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const departments_id = id;
-    const data = await departmentsModel.findOne({
+    const bond_id = id;
+    const data = await bondModel.findOne({
       where: {
-        departments_id,
+        bond_id,
       },
     });
     res.send({ data });
@@ -29,8 +29,8 @@ const getItem = async (req, res) => {
 
 const createItem = async (req, res) => {
   try {
-    const body = req.body;
-    const data = await departmentsModel.create(body);
+    const bond = req.bond;
+    const data = await bondModel.create(bond);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -41,10 +41,16 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const departments_id = id;
-    const { departments, activate } = req.body;
-    const data = await departmentsModel.findByPk(departments_id);
-    data.departments = departments;
+    const bond_id = id;
+    const { 
+      bond, 
+      bond_abbrev,
+      bond_category,
+      activate } = req.bond;
+    const data = await bondModel.findByPk(bond_id);
+    data.bond = bond;
+    data.bond_abbrev = bond_abbrev;
+    data.bond_category = bond_category;
     data.activate = activate;
     await data.save();
     res.status(200);
@@ -57,10 +63,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const departments_id = id;
-    const data = await departmentsModel.destroy({
+    const bond_id = id;
+    const data = await bondModel.destroy({
       where: {
-        departments_id,
+        bond_id,
       },
     });
     res.status(204);

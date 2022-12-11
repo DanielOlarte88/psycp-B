@@ -47,7 +47,7 @@ const updateItem = async (req, res) => {
     data.actual_condition_actual_condition_id = actual_condition_actual_condition_id;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

@@ -56,7 +56,7 @@ const updateItem = async (req, res) => {
     data.institutions_has_profes_profes_profes_id = institutions_has_profes_profes_profes_id;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

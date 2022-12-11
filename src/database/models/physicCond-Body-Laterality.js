@@ -2,6 +2,7 @@ const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
 const { physicCondModel } = require(".");
 const { physicCondBodyModel } = require(".");
+const { lateralityModel } = require(".");
 const { bodyModel } = require(".");
 
 const PhysicCond_Body_Laterality = sequelize.define(
@@ -34,7 +35,7 @@ const PhysicCond_Body_Laterality = sequelize.define(
       primaryKey: true,
       allowNull: false,
       references: {
-        model: body-LateralityModel,
+        model: lateralityModel,
         key: 'id'
       },
       onUpdate: 'CASCADE',

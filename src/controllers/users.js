@@ -1,11 +1,10 @@
-const { usersModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
+const { usersModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
-    const person = req.person;
-    const data = await usersModel.findAll({});
-    res.send({ data, person });
+    const data = await usersModel.findAllData({});
+    res.send({ data });
   } catch (e) {
     console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
@@ -49,6 +48,9 @@ const updateItem = async (req, res) => {
       users_birth_iso3366,
       users_birth_ubigeo,
       users_residence_iso3366,
+      users_residence_department,
+      users_residence_province,
+      users_residence_district,
       users_residence_ubigeo,
       birth_sexes_birth_sexes_id,
       persons_persons_id,
@@ -61,12 +63,15 @@ const updateItem = async (req, res) => {
     data.users_birth_iso3366 = users_birth_iso3366;
     data.users_birth_ubigeo = users_birth_ubigeo;
     data.users_residence_iso3366 = users_residence_iso3366;
+    data.users_residence_department = users_residence_department;
+    data.users_residence_province = users_residence_province;
+    data.users_residence_district = users_residence_district;
     data.users_residence_ubigeo = users_residence_ubigeo;
     data.birth_sexes_birth_sexes_id = birth_sexes_birth_sexes_id;
     data.persons_persons_id = persons_persons_id;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

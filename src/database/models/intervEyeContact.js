@@ -9,7 +9,7 @@ const IntervEyeContact = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    interv_eye_contact: {
+    eye_contact: {
       type: DataTypes.STRING,
       allowNull: false,
     },

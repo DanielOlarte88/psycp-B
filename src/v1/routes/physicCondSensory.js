@@ -8,7 +8,7 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/physicalCondSensory");
+} = require("../../controllers/physicCondSensory");
 
 router.get("/", 
   getItems

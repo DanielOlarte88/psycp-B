@@ -8,7 +8,7 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/intervSession ");
+} = require("../../controllers/intervSession");
 
 router.get("/", 
   getItems

@@ -47,7 +47,7 @@ const updateItem = async (req, res) => {
     data.physic_cleanliness = physic_cleanliness;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

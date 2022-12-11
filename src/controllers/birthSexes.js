@@ -3,9 +3,14 @@ const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
-    const person = req.person;
-    const data = await birthSexesModel.findAll({});
-    res.send({ data, person });
+    const data = await birthSexesModel.findAll({
+      // attributes: ['birth_sexes'],
+      // include: {
+      //   association: 'user',
+      //   attributes: ['birth_sexes_birth_sexes_id']
+      // }
+    });
+    res.send({ data });
   } catch (e) {
     console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
@@ -47,7 +52,7 @@ const updateItem = async (req, res) => {
     data.birth_sexes = birth_sexes;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

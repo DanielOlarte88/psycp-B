@@ -42,12 +42,12 @@ const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
     const interv_attitude_id = id;
-    const { interv_attitude, activate } = req.body;
+    const { attitude, activate } = req.body;
     const data = await intervAttitudeModel.findByPk(interv_attitude_id);
-    data.interv_attitude = interv_attitude;
+    data.attitude = attitude;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

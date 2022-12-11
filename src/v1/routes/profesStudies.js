@@ -10,13 +10,9 @@ const {
   deleteItem,
 } = require("../../controllers/profesStudies");
 
-router.get("/", 
-  getItems
-);
+router.get("/", getItems);
 
-router.get("/:id", 
-  getItem
-);
+router.get("/:id", getItem);
 
 router.post("/", 
   authMiddleware, 

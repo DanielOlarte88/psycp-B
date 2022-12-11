@@ -1,15 +1,15 @@
 const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
 
-const PhysicVestment = sequelize.define(
-  "physic_vestment",
+const PhysicPsychomotMuscleCondi = sequelize.define(
+  "physic_psychomot_muscle_condi",
   {
-    physic_vestment_id: {
+    physic_psychomot_muscle_condi_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    vestment: {
+    muscle_tone_condition: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,4 +24,4 @@ const PhysicVestment = sequelize.define(
   }
 );
 
-module.exports = PhysicVestment;
+module.exports = PhysicPsychomotMuscleCondi;

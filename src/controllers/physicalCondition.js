@@ -55,7 +55,7 @@ const updateItem = async (req, res) => {
     data.physical_condition_physical_condition_id = physical_condition_physical_condition_id;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

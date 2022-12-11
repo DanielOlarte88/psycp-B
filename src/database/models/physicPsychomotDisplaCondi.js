@@ -1,7 +1,7 @@
 const { sequelize } = require("../../database/config/mysql");
 const { DataTypes } = require("sequelize");
 
-const PhysicPpsychomotDisplacement = sequelize.define(
+const PhysicPsychomotDisplaCondi = sequelize.define(
   "physic_psychomot_displa_condi",
   {
     physic_psychomot_displa_condi_id: {
@@ -9,7 +9,7 @@ const PhysicPpsychomotDisplacement = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    physic_psychomot_displa_condi_id: {
+    displacement_condition: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,4 +24,4 @@ const PhysicPpsychomotDisplacement = sequelize.define(
   }
 );
 
-module.exports = PhysicPpsychomotDisplacement;
+module.exports = PhysicPsychomotDisplaCondi;

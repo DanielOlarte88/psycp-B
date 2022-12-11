@@ -1,5 +1,6 @@
-const { sequelize } = require("../config/mysql")
+const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
+const BirthSexes = require("./birthSexes");
 
 const Users = sequelize.define(
   "users",
@@ -34,6 +35,18 @@ const Users = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    users_residence_department: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    users_residence_province: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    users_residence_district: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     users_residence_ubigeo: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -50,11 +63,28 @@ const Users = sequelize.define(
       type: DataTypes.TINYINT,
       defaultValue: 1,
       allowNull: false,
-    }
+    },
   },
   {
     timestamps: true,
   }
 );
+
+Users.findAllData = function () {
+  Users.belongsTo(BirthSexes, {
+    as: "birthSexCrud",
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE",
+    foreignKey: "birth_sexes_birth_sexes_id",
+  });
+  return Users.findAll({ 
+    include: {
+      model: BirthSexes,
+      as: "birthSexCrud",
+      attributes: ['birth_sexes']
+    },
+    attributes: ['users_id']
+  });
+};
 
 module.exports = Users;

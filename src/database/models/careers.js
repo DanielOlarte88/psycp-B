@@ -28,4 +28,8 @@ const Careers = sequelize.define(
   }
 );
 
+// Careers.associate = models => {
+//   Careers.belongsTo(models.ProfesStudies, { as: 'careers', onDelete: 'CASCADE', foreignKey: { name: 'careers_id', allowNull: false }});
+// }
+
 module.exports = Careers;

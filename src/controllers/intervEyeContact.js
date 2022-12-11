@@ -42,12 +42,12 @@ const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
     const interv_eye_contact_id = id;
-    const { interv_eye_contact, activate } = req.body;
+    const { eye_contact, activate } = req.body;
     const data = await intervEyeContactModel.findByPk(interv_eye_contact_id);
-    data.interv_eye_contact = interv_eye_contact;
+    data.eye_contact = eye_contact;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

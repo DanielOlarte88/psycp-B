@@ -1,5 +1,7 @@
 const { sequelize } = require("../../database/config/mysql");
 const { DataTypes } = require("sequelize");
+const Users = require("./users");
+
 
 const BirthSexes = sequelize.define(
   "birth_sexes",
@@ -23,5 +25,14 @@ const BirthSexes = sequelize.define(
     timestamps: true,
   }
 );
+
+// BirthSexes.findAllData = function () {
+//   BirthSexes.hasMany(Users, {
+//     as: "user",
+//     onDelete: "CASCADE",
+//     foreignKey: "users_id",
+//   });
+//   return Users.findAll({ include: "users" });
+// };
 
 module.exports = BirthSexes;

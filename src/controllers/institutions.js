@@ -58,7 +58,7 @@ const updateItem = async (req, res) => {
     data.institutions_ubigeo = institutions_ubigeo;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

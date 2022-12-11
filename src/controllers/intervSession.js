@@ -43,21 +43,19 @@ const updateItem = async (req, res) => {
     const { id } = req.params;
     const interv_session_id = id;
     const { 
-      interv_session,
-      interview_interview_id,
+      session_num,
       interv_accessibility_interv_accessibility_id,
       interv_eye_contact_interv_eye_contact_id,
       actual_condition_actual_condition_id,
       activate } = req.body;
     const data = await intervSessionModel.findByPk(interv_session_id);
-    data.interview_interview_id = interview_interview_id;
-    data.interview_interview_id = interview_interview_id;
+    data.session_num = session_num;
     data.interv_accessibility_interv_accessibility_id = interv_accessibility_interv_accessibility_id;
     data.interv_eye_contact_interv_eye_contact_id = interv_eye_contact_interv_eye_contact_id;
     data.actual_condition_actual_condition_id = actual_condition_actual_condition_id;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

@@ -3,7 +3,7 @@ const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
-    const person = req.person 
+    const person = req.person;
     const data = await filiationModel.findAll({});
     res.send({ data, person });
   } catch (e) {
@@ -78,7 +78,7 @@ const updateItem = async (req, res) => {
     data.anamnesis_anamnesis_id = anamnesis_anamnesis_id;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

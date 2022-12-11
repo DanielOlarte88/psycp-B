@@ -1,5 +1,6 @@
 const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
+const { physicCondModel } = require(".");
 const { sensoryModel } = require(".");
 const { lateralityModel } = require(".");
 const { physicCondSensoryModel } = require(".");

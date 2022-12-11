@@ -1,13 +1,11 @@
-const { profesStudiesModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
+const { profesStudiesModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
-    const person = req.person;
     const data = await profesStudiesModel.findAll({});
-    res.send({ data, person });
+    res.send({ data });
   } catch (e) {
-    console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
   }
 };
@@ -15,18 +13,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const profes_profes_id = id;
-    const data = await profesStudiesModel.findAll({
+    const data = await profesStudiesModel.findAllData({
       where: {
-        profes_profes_id,
-      },
-      include: [{
-        model: models.careers,
-        as: 'careers_id',
-        where: {
-          careers,
-        }
-      }]
+        profes_profes_id: id,
+      }
     });
     res.send({ data });
   } catch (e) {
@@ -68,7 +58,7 @@ const updateItem = async (req, res) => {
     data.profes_profes_id = profes_profes_id;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

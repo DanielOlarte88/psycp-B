@@ -11,15 +11,15 @@ const Profes = sequelize.define(
       autoIncrement: true,
     },
     profes_internal_code: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     profes_residence_ubigeo: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     users_users_id: {
-      type: DataTypes.TIME,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     activate: {

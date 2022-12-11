@@ -1,15 +1,23 @@
 const { sequelize } = require("../../database/config/mysql");
 const { DataTypes } = require("sequelize");
 
-const IntervAccessibility = sequelize.define(
-  "interv_accessibility",
+const Bond = sequelize.define(
+  "bond",
   {
-    interv_accessibility_id: {
+    bond_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    accessibility: {
+    bond: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    bond_abbrev: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    bond_category: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,4 +32,4 @@ const IntervAccessibility = sequelize.define(
   }
 );
 
-module.exports = IntervAccessibility;
+module.exports = Bond;

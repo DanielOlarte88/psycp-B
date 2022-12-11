@@ -8,7 +8,7 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/physicalCond");
+} = require("../../controllers/physicCond");
 
 router.get("/", 
   getItems

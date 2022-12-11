@@ -42,12 +42,12 @@ const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
     const physic_psychomot_muscle_condi_id = id;
-    const { physic_psychomot_muscle_condi, activate } = req.body;
+    const { muscle_tone_condition, activate } = req.body;
     const data = await physicPsychomotMuscleCondiModel.findByPk(physic_psychomot_muscle_condi_id);
-    data.physic_psychomot_muscle_condi = physic_psychomot_muscle_condi;
+    data.muscle_tone_condition = muscle_tone_condition;
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

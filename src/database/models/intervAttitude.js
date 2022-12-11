@@ -9,7 +9,7 @@ const IntervAttitude = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    interv_attitude: {
+    attitude: {
       type: DataTypes.STRING,
       allowNull: false,
     },

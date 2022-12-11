@@ -53,7 +53,7 @@ const updateItem = async (req, res) => {
     data.user_states_user_states_id = user_states_user_states_id,
     data.activate = activate;
     await data.save();
-    res.status(500);
+    res.status(200);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_UPDATE_ITEMS");

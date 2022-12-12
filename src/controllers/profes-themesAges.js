@@ -1,11 +1,12 @@
 const { handleHttpError } = require("../database/utils/handleError");
-const { profesStudiesModel } = require("../database/models");
+const { profes_themesAgesModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
-    const data = await profesStudiesModel.findAll({});
+    const data = await profes_themesAgesModel.findAll({});
     res.send({ data });
   } catch (e) {
+    console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
   }
 };
@@ -13,10 +14,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await profesStudiesModel.findAllData({
+    const data = await profes_themesAgesModel.findAllData({
       where: {
         profes_profes_id: id,
-      }
+      },
     });
     res.send({ data });
   } catch (e) {
@@ -27,7 +28,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await profesStudiesModel.create(body);
+    const data = await profes_themesAgesModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -38,24 +39,18 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const profes_studies_id = id;
+    const profes_themesAges_id = id;
     const { 
-      profes_studies_careers_code,
-      profes_studies_edu_institution_code,
-      profes_studies_instruction_level_code,
-      profes_studies_with_mention,
-      profes_studies_instruction_year_code,
-      profes_studies_studies_area_code,
       profes_profes_id,
+      themes_themes_id,
+      themes_themes_groups_themes_groups_id,
+      themes_ages_themes_ages_id,
       activate } = req.body;
-    const data = await profesStudiesModel.findByPk(profes_studies_id);
-    data.profes_studies_careers_code = profes_studies_careers_code;
-    data.profes_studies_edu_institution_code = profes_studies_edu_institution_code;
-    data.profes_studies_instruction_level_code = profes_studies_instruction_level_code;
-    data.profes_studies_with_mention = profes_studies_with_mention;
-    data.profes_studies_instruction_year_code = profes_studies_instruction_year_code;
-    data.profes_studies_studies_area_code = profes_studies_studies_area_code;
-    data.profes_profes_id = profes_profes_id;
+    const data = await profes_themesAgesModel.findByPk(profes_themesAges_id);
+    data.profes_profes_id = profes_profes_id,
+    data.themes_themes_id = themes_themes_id,
+    data.themes_themes_groups_themes_groups_id = themes_themes_groups_themes_groups_id,
+    data.themes_ages_themes_ages_id = themes_ages_themes_ages_id,
     data.activate = activate;
     await data.save();
     res.status(200);
@@ -68,10 +63,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const profes_studies_id = id;
-    const data = await profesStudiesModel.destroy({
+    const profes_themesAges_id = id;
+    const data = await profes_themesAgesModel.destroy({
       where: {
-        profes_studies_id,
+        profes_themesAges_id,
       },
     });
     res.status(204);

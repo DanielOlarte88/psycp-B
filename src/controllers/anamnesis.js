@@ -1,10 +1,10 @@
-const { patientsModel } = require("../database/models");
+const { anamnesisModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const person = req.person;
-    const data = await patientsModel.findAll({});
+    const data = await anamnesisModel.findAll({});
     res.send({ data, person });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,11 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await patientsModel.findAllData({
+    const anamnesis_id = id;
+    const data = await anamnesisModel.findOne({
       where: {
-        profes_profes_id: id,
-      }
+        anamnesis_id,
+      },
     });
     res.send({ data });
   } catch (e) {
@@ -29,7 +30,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await patientsModel.create(body);
+    const data = await anamnesisModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -40,16 +41,13 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const patients_id = id;
+    const anamnesis_id = id;
     const { 
-      patients_internal_code, 
-      users_users_id,
-      persons_persons_id,
-      activate } = req.body;
-    const data = await patientsModel.findByPk(patients_id);
-    data.patients_internal_code = patients_internal_code;
-    data.users_users_id = users_users_id;
-    data.persons_persons_id = persons_persons_id;
+      clinicalHistories_clinicalHistories_id,
+      activate
+    } = req.body;
+    const data = await anamnesisModel.findByPk(anamnesis_id);
+    data.clinicalHistories_clinicalHistories_id = clinicalHistories_clinicalHistories_id;
     data.activate = activate;
     await data.save();
     res.status(200);
@@ -62,10 +60,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const patients_id = id;
-    const data = await patientsModel.destroy({
+    const anamnesis_id = id;
+    const data = await anamnesisModel.destroy({
       where: {
-        patients_id,
+        anamnesis_id,
       },
     });
     res.status(204);

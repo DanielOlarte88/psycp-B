@@ -31,6 +31,7 @@ const models = {
     patients_userStatesModel: require(`../../database/models/patients-userStates`),
 
   clinicalHistoriesModel: require(`../../database/models/clinicalHistories`),
+  anamnesisModel: require(`../../database/models/anamnesis`),
 
     reasonConsultationModel: require(`../../database/models/reasonConsultation`),
     

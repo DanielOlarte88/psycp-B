@@ -66,20 +66,21 @@ ProfesStudies.findAllData = function (id) {
       activate: 1
     },
     include: [
-      {model: Careers, attributes: ['careers']},
-      {model: EduInstitutions, attributes: ['edu_institutions']},
-      {model: InstructionLevels, attributes: ['instruction_levels']},
-      {model: InstructionYears, attributes: ['instruction_years']},
-      {model: StudiesArea, attributes: ['studies_area']},
+      {model: Careers, attributes: []},
+      {model: EduInstitutions, attributes: []},
+      {model: InstructionLevels, attributes: []},
+      {model: InstructionYears, attributes: []},
+      {model: StudiesArea, attributes: []},
     ],
     attributes: [
-      [sequelize.literal('`career`.`careers`'), 'profes_studies_career_code'],
-      [sequelize.literal('`edu_institution`.`edu_institutions`'), 'profes_studies_edu_institution_code'],
-      [sequelize.literal('`instruction_level`.`instruction_levels`'), 'profes_studies_instruction_level_code'],
-      [sequelize.literal('`instruction_year`.`instruction_years`'), 'profes_studies_instruction_year_code'],
-      [sequelize.literal('`studies_area`.`studies_area`'), 'profes_studies_studies_area_code'],
+      [sequelize.col('career.careers'), 'profes_studies_career_code'],
+      [sequelize.col('edu_institution.edu_institutions'), 'profes_studies_edu_institution_code'],
+      [sequelize.col('instruction_level.instruction_levels'), 'profes_studies_instruction_level_code'],
+      [sequelize.col('instruction_year.instruction_years'), 'profes_studies_instruction_year_code'],
+      [sequelize.col('studies_area.studies_area'), 'profes_studies_studies_area_code'],
       'profes_studies_with_mention'
     ],
+    raw: true,
   })
 };
 

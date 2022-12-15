@@ -2,39 +2,39 @@ const { matchedData } = require("express-validator");
 const { encrypt, compare } = require("../database/utils/handlePassword");
 const { tokenSign } = require("../database/utils/handleJwt");
 const { handleHttpError } = require("../database/utils/handleError");
-const { personsModel } = require("../database/models");
+const { usersModel } = require("../database/models");
 
  const registerCtrl = async (req, res) => {
   try{
     req = matchedData(req);
     const password = await encrypt(req.password);
     const body = { ...req, password };
-    const dataPerson = await personsModel.create(body);
-    dataPerson.set("password", undefined, { strict: false });
+    const dataUser = await usersModel.create(body);
+    dataUser.set("password", undefined, { strict: false });
   
     const data = {
-      token: await tokenSign(dataPerson),
-      person: dataPerson,
+      token: await tokenSign(dataUser),
+      user: dataUser,
     };
     res.status(201)
     res.send({ data });
   }catch(e){
     console.log(e)
-    handleHttpError(res, "ERROR_REGISTER_PERSON")
+    handleHttpError(res, "ERROR_REGISTER_USER")
   }
 };
 
 const loginCtrl = async (req, res) => {
   try{
     req = matchedData(req);
-    const person = await personsModel.findOne({email: req.email})
+    const user = await usersModel.findOne({email: req.email})
 
-    if(!person){
-      handleHttpError(res, "PERSON_NOT_EXISTS", 404);
+    if(!user){
+      handleHttpError(res, "USER_NOT_EXISTS", 404);
       return
     }
 
-    const hashPassword = person.get('password');
+    const hashPassword = user.get('password');
 
     const check = await compare(req.password, hashPassword)
 
@@ -43,17 +43,17 @@ const loginCtrl = async (req, res) => {
       return
     }
 
-    person.set('password', undefined, {strict: false})
+    user.set('password', undefined, {strict: false})
     const data = {
-      token: await tokenSign(person),
-      person
+      token: await tokenSign(user),
+      user
     }
 
     res.send({data})
 
   }catch(e){
     console.log(e)
-    handleHttpError(res, "ERROR_LOGIN_PERSON")
+    handleHttpError(res, "ERROR_LOGIN_USER")
   }
 }
 

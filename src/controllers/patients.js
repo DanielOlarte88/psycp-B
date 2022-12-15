@@ -3,9 +3,9 @@ const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
-    const person = req.person;
+    const user = req.user;
     const data = await patientsModel.findAll({});
-    res.send({ data, person });
+    res.send({ data, user });
   } catch (e) {
     console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
@@ -15,10 +15,11 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await patientsModel.findAllData({
+    const patients_id = id;
+    const data = await patientsModel.findOne({
       where: {
-        profes_profes_id: id,
-      }
+        patients_id,
+      },
     });
     res.send({ data });
   } catch (e) {
@@ -44,12 +45,10 @@ const updateItem = async (req, res) => {
     const { 
       patients_internal_code, 
       users_users_id,
-      persons_persons_id,
       activate } = req.body;
     const data = await patientsModel.findByPk(patients_id);
     data.patients_internal_code = patients_internal_code;
     data.users_users_id = users_users_id;
-    data.persons_persons_id = persons_persons_id;
     data.activate = activate;
     await data.save();
     res.status(200);

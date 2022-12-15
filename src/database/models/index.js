@@ -1,9 +1,8 @@
 
 const models = {
-  personsModel: require(`../../database/models/persons`),
+  usersModel: require(`../../database/models/users`),
     mentalCareersModel: require(`../../database/models/mentalCareers`),
     statusLicensesModel: require(`../../database/models/statusLicenses`),
-  usersModel: require(`../../database/models/users`),
     birthSexesModel: require(`../../database/models/birthSexes`),
     iso3366n1Model: require(`../../database/models/iso3366n1`),
     iso3366n2Model: require(`../../database/models/iso3366n2`),
@@ -24,8 +23,9 @@ const models = {
     themesModel: require(`../../database/models/themes`),
     themesGroupsModel: require(`../../database/models/themesGroups`),
     themesAgesModel: require(`../../database/models/themesAges`),
-    profes_themesAgesModel: require(`./profes-themesAges`),
-    intensityModel: require(`./intensity`),
+    profesSpecModel: require(`../../database/models/profesSpec`),
+    profesSpec_themesAgesModel: require(`../../database/models/profesSpec-themesAges`),
+    intensityModel: require(`../../database/models/intensity`),
   patientsModel: require(`../../database/models/patients`),
     userStatesModel: require(`../../database/models/userStates`),
     patients_userStatesModel: require(`../../database/models/patients-userStates`),

@@ -8,25 +8,29 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/persons");
+} = require("../../controllers/profesSpec-themesAges");
 
-router.get("/", getItems);
+router.get("/", 
+  getItems
+);
 
-router.get("/:id", getItem);
+router.get("/:id", 
+  getItem
+);
 
-router.post("/",
-  authMiddleware,
-  checkRole(["profes", "admin"]),
+router.post("/", 
+  authMiddleware, 
+  checkRole(["profes", "admin"]), 
   createItem
 );
 
-router.put("/:id",
-  authMiddleware,
+router.put("/:id", 
+  authMiddleware, 
   updateItem
 );
 
 router.delete("/:id", 
-  authMiddleware,
+  authMiddleware, 
   deleteItem
 );
 

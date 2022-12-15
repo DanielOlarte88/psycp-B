@@ -8,7 +8,7 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/profes-themesAges");
+} = require("../../controllers/profesSpec");
 
 router.get("/", 
   getItems

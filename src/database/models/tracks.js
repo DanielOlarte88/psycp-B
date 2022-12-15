@@ -40,7 +40,7 @@ const Tracks = sequelize.define(
 );
 
 /**
- * Implementando modelo personalizado
+ * Implementando modelo useralizado
  */
 
 Tracks.findAllData = function () {

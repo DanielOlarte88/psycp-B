@@ -1,11 +1,10 @@
-const { physicCondModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
+const { profesSpec_themesAgesModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
-    const user = req.user;
-    const data = await physicCondModel.findAll({});
-    res.send({ data, user });
+    const data = await profesSpec_themesAgesModel.findAll({});
+    res.send({ data });
   } catch (e) {
     console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
@@ -15,10 +14,9 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const physic_cond_id = id;
-    const data = await physicCondModel.findOne({
+    const data = await profesSpec_themesAgesModel.findAllData({
       where: {
-        physic_cond_id,
+        profes_profes_id: id,
       },
     });
     res.send({ data });
@@ -30,7 +28,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await physicCondModel.create(body);
+    const data = await profesSpec_themesAgesModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -41,10 +39,12 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const physic_cond_id = id;
-    const { physic_cond, activate } = req.body;
-    const data = await physicCondModel.findByPk(physic_cond_id);
-    data.physic_cond = physic_cond;
+    const profesSpec_themesAges_id = id;
+    const { 
+      themes_ages_themes_ages_id,
+      activate } = req.body;
+    const data = await profesSpec_themesAgesModel.findByPk(profesSpec_themesAges_id);
+    data.themes_ages_themes_ages_id = themes_ages_themes_ages_id,
     data.activate = activate;
     await data.save();
     res.status(200);
@@ -57,10 +57,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const physic_cond_id = id;
-    const data = await physicCondModel.destroy({
+    const profesSpec_themesAges_id = id;
+    const data = await profesSpec_themesAgesModel.destroy({
       where: {
-        physic_cond_id,
+        profesSpec_themesAges_id,
       },
     });
     res.status(204);

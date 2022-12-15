@@ -3,9 +3,9 @@ const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
-    const person = req.person;
+    const user = req.user;
     const data = await userStatesModel.findAll({});
-    res.send({ data, person });
+    res.send({ data, user });
   } catch (e) {
     console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
@@ -15,11 +15,10 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const user_states_id = id;
-    const data = await userStatesModel.findOne({
-      where: {
-        user_states_id,
-      },
+    const data = await userStatesModel.findAllData({
+      // where: {
+      //   profes_profes_id: id,
+      // }
     });
     res.send({ data });
   } catch (e) {

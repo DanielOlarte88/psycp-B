@@ -19,6 +19,7 @@ const getItem = async (req, res) => {
         profes_profes_id: id,
       },
     });
+    
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");

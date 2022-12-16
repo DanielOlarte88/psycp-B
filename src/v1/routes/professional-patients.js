@@ -8,7 +8,7 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/patients-userStates");
+} = require("../../controllers/professional-patients");
 
 router.get("/", 
   getItems

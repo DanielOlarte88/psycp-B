@@ -27,8 +27,7 @@ const models = {
     profesSpec_themesAgesModel: require(`../../database/models/profesSpec-themesAges`),
     intensityModel: require(`../../database/models/intensity`),
   patientsModel: require(`../../database/models/patients`),
-    userStatesModel: require(`../../database/models/userStates`),
-    patients_userStatesModel: require(`../../database/models/patients-userStates`),
+    professional_patientsModel: require(`./professional-patients`),
 
   clinicalHistoriesModel: require(`../../database/models/clinicalHistories`),
   anamnesisModel: require(`../../database/models/anamnesis`),

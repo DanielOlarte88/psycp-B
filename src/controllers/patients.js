@@ -1,5 +1,7 @@
-const { patientsModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
+const { patientsModel } = require("../database/models");
+const moment = require('moment')
+let { AgeFromDateString } = require('age-calculator');
 
 const getItems = async (req, res) => {
   try {
@@ -15,17 +17,30 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const patients_id = id;
-    const data = await patientsModel.findOne({
-      where: {
-        patients_id,
-      },
-    });
+    const data = await patientsModel.findOneData({});
+    var date = data.users_birth_date
+    var EditedDob = moment(date, "YYYY-MM-DD").format('DD-MM-YYYY')
+    data.users_age = new AgeFromDateString(EditedDob).age;
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");
   }
 };
+
+// const getItem = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const patients_id = id;
+//     const data = await patientsModel.findOne({
+//       where: {
+//         patients_id,
+//       },
+//     });
+//     res.send({ data });
+//   } catch (e) {
+//     handleHttpError(res, "ERROR_GET_ITEM");
+//   }
+// };
 
 const createItem = async (req, res) => {
   try {

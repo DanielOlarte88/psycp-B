@@ -8,7 +8,7 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/patients-userStates");
+} = require("../../controllers/physicCond-Laterality");
 
 router.get("/", 
   getItems

@@ -12,11 +12,11 @@ const Profes = sequelize.define(
     },
     profes_internal_code: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     profes_residence_ubigeo: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     users_users_id: {
       type: DataTypes.INTEGER,

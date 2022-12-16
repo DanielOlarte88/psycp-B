@@ -58,27 +58,25 @@ ProfesSpec.findAllData = function (id) {
   
   return ProfesSpec.findAll({
     where: {
-      profes_profes_id: 2,
+      profes_profes_id: 1,
       activate: 1
     },
     include: [
       {model: Profes, attributes: []},
       {model: Themes, attributes: []},
       {model: ThemesGroups, attributes: []},
-    //   {model: ProfesSpec_ThemesAges, attributes: ['themes_ages_themes_ages_id'],
-    //     include: [{
-    //       model: ThemesAges, attributes: ['themes_ages'],
-    //     }],
-    //     // attributes: [
-    //     //   [sequelize.col('theme_age.themes_ages'), 'themes_ages'],
-    //     // ]
-    // }],
-    ],
+      {model: ProfesSpec_ThemesAges, attributes: [], 
+        include: [{
+          model: ThemesAges, attributes: ['themes_ages'],
+        }],
+    }],
     attributes: [
       [sequelize.col('theme.themes'), 'themes_themes_id'],
       [sequelize.col('themes_group.themes_groups'), 'themes_themes_groups_themes_groups_id'],
+      [sequelize.col('profes_spec_has_themes_ages.themes_age.themes_ages'), 'themes_ages'],
       'themes_specialty_level', 'themes_experience_level', 'profes_spec_id'
-    ]
+    ],
+    raw: true,
   })
 };
 

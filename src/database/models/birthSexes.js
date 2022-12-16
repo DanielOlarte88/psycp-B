@@ -2,7 +2,6 @@ const { sequelize } = require("../../database/config/mysql");
 const { DataTypes } = require("sequelize");
 const Users = require("./users");
 
-
 const BirthSexes = sequelize.define(
   "birth_sexes",
   {

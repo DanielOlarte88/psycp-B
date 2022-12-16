@@ -51,8 +51,8 @@ const updateItem = async (req, res) => {
       users_cellphone,
       users_license_num,
       users_terms,
-      users_email,
-      users_password,
+      email,
+      password,
       users_role,
       mental_careers_mental_careers_id,
       status_licenses_status_licenses_id,
@@ -79,8 +79,8 @@ const updateItem = async (req, res) => {
     data.users_cellphone = users_cellphone;
     data.users_license_num = users_license_num;
     data.users_terms = users_terms;
-    data.users_email = users_email;
-    data.users_password = users_password;
+    data.email = email;
+    data.password = password;
     data.users_role = users_role;
     data.mental_careers_mental_careers_id = mental_careers_mental_careers_id;
     data.status_licenses_status_licenses_id = status_licenses_status_licenses_id;

@@ -1,6 +1,6 @@
 const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
-const BirthSexes = require("./birthSexes");
+// const BirthSexes = require("./birthSexes");
 
 const Users = sequelize.define(
   "users",
@@ -49,12 +49,12 @@ const Users = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    users_email: {
+    email: {
       type: String,
       allowNull: false,
       unique: true,
     },
-    users_password: {
+    password: {
       type: String,
       allowNull: false,
     },
@@ -76,11 +76,11 @@ const Users = sequelize.define(
     },
     users_birth_date: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     users_birth_hour: {
       type: DataTypes.TIME,
-      allowNull: false,
+      allowNull: true,
     },
     users_birth_iso3366: {
       type: DataTypes.STRING,
@@ -92,27 +92,27 @@ const Users = sequelize.define(
     },
     users_residence_iso3366: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     users_residence_department: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     users_residence_province: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     users_residence_district: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     users_residence_ubigeo: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     birth_sexes_birth_sexes_id: {
       type: DataTypes.TINYINT,
-      allowNull: false,
+      allowNull: true,
     },
     activate: {
       type: DataTypes.TINYINT,
@@ -125,21 +125,21 @@ const Users = sequelize.define(
   }
 );
 
-Users.findAllData = function () {
-  Users.belongsTo(BirthSexes, {
-    as: "birthSexCrud",
-    onUpdate: "CASCADE",
-    onDelete: "CASCADE",
-    foreignKey: "birth_sexes_birth_sexes_id",
-  });
-  return Users.findAll({ 
-    include: {
-      model: BirthSexes,
-      as: "birthSexCrud",
-      attributes: ['birth_sexes']
-    },
-    attributes: ['users_id']
-  });
-};
+// Users.findAllData = function () {
+//   Users.belongsTo(BirthSexes, {
+//     as: "birthSexCrud",
+//     onUpdate: "CASCADE",
+//     onDelete: "CASCADE",
+//     foreignKey: "birth_sexes_birth_sexes_id",
+//   });
+//   return Users.findAll({ 
+//     include: {
+//       model: BirthSexes,
+//       as: "birthSexCrud",
+//       attributes: ['birth_sexes']
+//     },
+//     attributes: ['users_id']
+//   });
+// };
 
 module.exports = Users;

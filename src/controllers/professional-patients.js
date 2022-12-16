@@ -1,10 +1,10 @@
-const { userStatesModel } = require("../database/models");
+const { professional_patientsModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
-    const data = await userStatesModel.findAll({});
+    const data = await professional_patientsModel.findAll({});
     res.send({ data, user });
   } catch (e) {
     console.log(e);
@@ -15,10 +15,7 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await userStatesModel.findAllData({
-      // where: {
-      //   profes_profes_id: id,
-      // }
+    const data = await professional_patientsModel.findAllData({
     });
     res.send({ data });
   } catch (e) {
@@ -26,10 +23,25 @@ const getItem = async (req, res) => {
   }
 };
 
+// const getItem = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const professional_patients_id = id;
+//     const data = await professional_patientsModel.findOne({
+//       where: {
+//         professional_patients_id,
+//       },
+//     });
+//     res.send({ data });
+//   } catch (e) {
+//     handleHttpError(res, "ERROR_GET_ITEM");
+//   }
+// };
+
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await userStatesModel.create(body);
+    const data = await professional_patientsModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -40,19 +52,16 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const user_states_id = id;
+    const professional_patients_id = id;
     const { 
-      user_states, 
-      user_states_code, 
-      institutions_has_profes_institutions_institutions_id,
-      institutions_has_profes_profes_profes_id,
-      activate 
-    } = req.body;
-    const data = await userStatesModel.findByPk(user_states_id);
-    data.user_states = user_states;
-    data.user_states_code = user_states_code;
-    data.institutions_has_profes_institutions_institutions_id = institutions_has_profes_institutions_institutions_id;
-    data.institutions_has_profes_profes_profes_id = institutions_has_profes_profes_profes_id;
+      patients_patients_id,
+      patients_users_users_id,
+      user_states_user_states_id,
+      activate } = req.body;
+    const data = await professional_patientsModel.findByPk(professional_patients_id);
+    data.patients_patients_id = patients_patients_id,
+    data.patients_users_users_id = patients_users_users_id,
+    data.user_states_user_states_id = user_states_user_states_id,
     data.activate = activate;
     await data.save();
     res.status(200);
@@ -65,10 +74,10 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const user_states_id = id;
-    const data = await userStatesModel.destroy({
+    const professional_patients_id = id;
+    const data = await professional_patientsModel.destroy({
       where: {
-        user_states_id,
+        professional_patients_id,
       },
     });
     res.status(204);

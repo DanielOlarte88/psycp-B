@@ -1,14 +1,36 @@
 const { clinicalHistoriesModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
+const moment = require('moment')
+let { AgeFromDateString } = require('age-calculator');
+
+// const getItems = async (req, res) => {
+//   try {
+//     const user = req.user;
+//     const data = await clinicalHistoriesModel.findAll({});
+//     res.send({ data, user });
+//   } catch (e) {
+//     console.log(e);
+//     handleHttpError(res, "ERROR_GET_ITEMS");
+//   }
+// };
 
 const getItems = async (req, res) => {
   try {
-    const user = req.user;
-    const data = await clinicalHistoriesModel.findAll({});
-    res.send({ data, user });
+    const { id } = req.params;
+    const data = await clinicalHistoriesModel.findAllData(id);
+
+    // var createdAtHCP = data[0].createdAt;
+    // var birthDateHCP = data[0].users_birth_date;
+
+    // var dateHCP = moment(birthDateHCP, "YYYY-MM-DD").format('YYYY-MM-DD')
+    // var ageHCP = new AgeFromDateString(dateHCP).age;
+    // console.log(ageHCP)
+
+    // data.dateHCP = `${dateHCP} años`
+    // data.ageHCP = `${ageHCP}`
+    res.send({ data });
   } catch (e) {
-    console.log(e);
-    handleHttpError(res, "ERROR_GET_ITEMS");
+    handleHttpError(res, "ERROR_GET_ITEM");
   }
 };
 

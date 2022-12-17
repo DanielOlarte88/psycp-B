@@ -3,7 +3,7 @@ const { usersModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
-    const data = await usersModel.findAllData({});
+    const data = await usersModel.findAll({});
     res.send({ data });
   } catch (e) {
     console.log(e);

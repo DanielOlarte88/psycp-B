@@ -10,7 +10,7 @@ const {
   deleteItem,
 } = require("../../controllers/clinicalHistories");
 
-router.get("/", 
+router.get("/:id", 
   getItems
 );
 

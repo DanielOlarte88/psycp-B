@@ -1,6 +1,5 @@
 const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
-// const BirthSexes = require("./birthSexes");
 
 const Users = sequelize.define(
   "users",
@@ -124,22 +123,5 @@ const Users = sequelize.define(
     timestamps: true,
   }
 );
-
-// Users.findAllData = function () {
-//   Users.belongsTo(BirthSexes, {
-//     as: "birthSexCrud",
-//     onUpdate: "CASCADE",
-//     onDelete: "CASCADE",
-//     foreignKey: "birth_sexes_birth_sexes_id",
-//   });
-//   return Users.findAll({ 
-//     include: {
-//       model: BirthSexes,
-//       as: "birthSexCrud",
-//       attributes: ['birth_sexes']
-//     },
-//     attributes: ['users_id']
-//   });
-// };
 
 module.exports = Users;

@@ -17,10 +17,11 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await patientsModel.findOneData({});
+    const data = await patientsModel.findOneData(id);
     var date = data.users_birth_date
     var EditedDob = moment(date, "YYYY-MM-DD").format('DD-MM-YYYY')
-    data.users_age = new AgeFromDateString(EditedDob).age;
+    var age = new AgeFromDateString(EditedDob).age;
+    data.users_age = `${age} años`
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");

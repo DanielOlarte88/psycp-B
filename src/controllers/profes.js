@@ -15,12 +15,7 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const profes_id = id;
-    const data = await profesModel.findOne({
-      where: {
-        profes_id,
-      },
-    });
+    const data = await profesModel.findOne(id);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");

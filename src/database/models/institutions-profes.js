@@ -1,32 +1,23 @@
 const { sequelize } = require("../../database/config/mysql");
 const { DataTypes } = require("sequelize");
-const { institutionsModel } = require("../../database/models");
-const { profesModel } = require("../../database/models");
 
 const Institutions_Profes = sequelize.define(
   "institutions_has_profes",
   {
+    institutions_has_profes_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+    },
     institutions_institutions_id: {
       type: DataTypes.TINYINT,
       primaryKey: true,
       allowNull: false,
-      references: {
-        model: institutionsModel,
-        key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL'
     },
     profes_profes_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      references: {
-        model: profesModel,
-        key: 'id'
-      },
-      onUpdate: 'CASCADE',
-      onDelete: 'SET NULL'
     },
     institutions_user_internal_code: {
       type: DataTypes.STRING,
@@ -44,7 +35,7 @@ const Institutions_Profes = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    institutions_user_mode: {
+    user_mode_user_mode_id: {
       type: DataTypes.STRING,
       allowNull: false,
     },

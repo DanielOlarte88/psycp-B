@@ -35,7 +35,7 @@ Patients.findOneData = function (id) {
  
   return Patients.findOne({
     where: {
-      patients_id: 1,
+      patients_id: id,
       activate: 1
     },
     include: [{
@@ -43,14 +43,14 @@ Patients.findOneData = function (id) {
     }],
     attributes: [
       'patients_internal_code',
-      [sequelize.fn('concat', 
-          sequelize.col('user.users_first_surname'), ' ', 
-          sequelize.col('user.users_second_surname'), ', ',
-          sequelize.col('user.users_first_name'), ' ',
-          sequelize.col('user.users_second_name'), ' ',
-          sequelize.col('user.users_third_name')
-        ), 'users_fullname'
-      ],
+      // [sequelize.fn('concat', 
+      //     sequelize.col('user.users_first_surname'), ' ', 
+      //     sequelize.col('user.users_second_surname'), ', ',
+      //     sequelize.col('user.users_first_name'), ' ',
+      //     sequelize.col('user.users_second_name'), ' ',
+      //     sequelize.col('user.users_third_name')
+      //   ), 'users_fullname'
+      // ],
       [sequelize.col('user.users_identification_num'), 'users_identification_num'],
       [sequelize.col('user.users_first_name'), 'users_first_name'],
       [sequelize.col('user.users_second_name'), 'users_second_name'],
@@ -64,6 +64,10 @@ Patients.findOneData = function (id) {
       [sequelize.col('user.users_residence_department'), 'users_residence_department'],
       [sequelize.col('user.users_residence_province'), 'users_residence_province'],
       [sequelize.col('user.users_residence_district'), 'users_residence_district'],
+      // [sequelize.col('user.users_birth_iso3366'), 'users_birth_iso3366'],
+      // [sequelize.col('user.users_birth_department'), 'users_birth_department'],
+      // [sequelize.col('user.users_birth_province'), 'users_birth_province'],
+      // [sequelize.col('user.users_birth_district'), 'users_birth_district'],
     ],
     raw: true,
   })

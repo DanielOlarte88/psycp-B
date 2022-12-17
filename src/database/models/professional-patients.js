@@ -2,6 +2,7 @@ const { sequelize } = require("../config/mysql");
 const { DataTypes } = require("sequelize");
 const Patients = require("./patients");
 const Users = require("./users");
+const Institutions_Profes = require("./institutions-profes");
 
 const Professional_Patients = sequelize.define(
   "professional_has_patients",
@@ -11,7 +12,7 @@ const Professional_Patients = sequelize.define(
       primaryKey: true,
       allowNull: false,
     },
-    institutions_has_profes_institutions_has_professional: {
+    institutions_has_profes_institutions_has_profes_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
@@ -22,7 +23,7 @@ const Professional_Patients = sequelize.define(
       allowNull: false,
     },
     professional_has_patients_state: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     activate: {
@@ -42,8 +43,7 @@ Professional_Patients.findAllData = function (id) {
  
   return Professional_Patients.findAll({
     where: {
-      // institutions_has_profes_institutions_has_professional_id: 1,
-      institutions_has_profes_institutions_has_professional: 1,
+      institutions_has_profes_institutions_has_profes_id: id,
       activate: 1
     },
     include: [{
@@ -54,6 +54,7 @@ Professional_Patients.findAllData = function (id) {
     }],
     attributes: [
       [sequelize.col('patient.patients_internal_code'), 'patients_internal_code'],
+      [sequelize.col('patient.patients_id'), 'patients_id'],
       [sequelize.col('patient.user.users_first_name'), 'users_first_name'],
       [sequelize.col('patient.user.users_second_name'), 'users_second_name'],
       [sequelize.col('patient.user.users_third_name'), 'users_third_name'],

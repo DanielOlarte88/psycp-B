@@ -15,8 +15,7 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await professional_patientsModel.findAllData({
-    });
+    const data = await professional_patientsModel.findAllData(id);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");

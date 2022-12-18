@@ -3,18 +3,18 @@ const { handleHttpError } = require("../database/utils/handleError");
 const moment = require('moment')
 let { AgeFromDateString } = require('age-calculator');
 
-// const getItems = async (req, res) => {
-//   try {
-//     const user = req.user;
-//     const data = await clinicalHistoriesModel.findAll({});
-//     res.send({ data, user });
-//   } catch (e) {
-//     console.log(e);
-//     handleHttpError(res, "ERROR_GET_ITEMS");
-//   }
-// };
-
 const getItems = async (req, res) => {
+  try {
+    const user = req.user;
+    const data = await clinicalHistoriesModel.findAll({});
+    res.send({ data, user });
+  } catch (e) {
+    console.log(e);
+    handleHttpError(res, "ERROR_GET_ITEMS");
+  }
+};
+
+const getItemsById = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await clinicalHistoriesModel.findAllData(id);
@@ -102,4 +102,4 @@ const deleteItem = async (req, res) => {
   }
 };
 
-module.exports = { getItems, getItem, createItem, updateItem, deleteItem };
+module.exports = { getItems, getItemsById, getItem, createItem, updateItem, deleteItem };

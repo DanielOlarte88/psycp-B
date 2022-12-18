@@ -4,14 +4,19 @@ const authMiddleware = require("../../middleware/session");
 const checkRole = require("../../middleware/role");
 const {
   getItems,
+  getItemsById,
   getItem,
   createItem,
   updateItem,
   deleteItem,
 } = require("../../controllers/clinicalHistories");
 
-router.get("/:id", 
+router.get("/", 
   getItems
+);
+
+router.get("/:id", 
+  getItemsById
 );
 
 router.get("/:id", 

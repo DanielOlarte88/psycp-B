@@ -10,13 +10,11 @@ const IntervSession_IntervAttitude = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-
     },
     interv_attitude_interv_attitude_id: {
       type: DataTypes.TINYINT,
       primaryKey: true,
       allowNull: false,
-
     },
     activate: {
       type: DataTypes.TINYINT,

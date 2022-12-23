@@ -27,6 +27,16 @@ const getItem = async (req, res) => {
   }
 };
 
+const getItemsById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await physicCond_LateralityModel.findAllData(id);
+    res.send({ data });
+  } catch (e) {
+    handleHttpError(res, "ERROR_GET_ITEM");
+  }
+};
+
 const createItem = async (req, res) => {
   try {
     const body = req.body;
@@ -77,4 +87,4 @@ const deleteItem = async (req, res) => {
   }
 };
 
-module.exports = { getItems, getItem, createItem, updateItem, deleteItem };
+module.exports = { getItems, getItemsById, getItem, createItem, updateItem, deleteItem };

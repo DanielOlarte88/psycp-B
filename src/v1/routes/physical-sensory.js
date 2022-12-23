@@ -9,7 +9,7 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/reasonConsultation");
+} = require("../../controllers/physical-sensory");
 
 router.get("/", 
   getItems

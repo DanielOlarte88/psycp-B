@@ -13,7 +13,7 @@ const PhysicPsychomotMuscleTone = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    level_description_id: {
+    muscle_tone_level_description_id: {
       type: DataTypes.STRING,
       allowNull: false,
     },

@@ -7,15 +7,13 @@ const PhysicPpsychomotDisplacement = sequelize.define(
     physical_psychomotricity_physical_psychomotricity_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
     },
     physic_psychomot_displa_condi_physic_psychomot_displa_condi_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.TINYINT,
+      primaryKey: true,
     },
-    level_description_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    displacement_level_description_id: {
+      type: DataTypes.TINYINT,
     },
     activate: {
       type: DataTypes.TINYINT,

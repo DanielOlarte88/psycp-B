@@ -9,11 +9,10 @@ const PhysicalPsychomotricity = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    physical_aspect_physical_aspect_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     motor_activity_level_description_id: {
+      type: DataTypes.STRING,
+    },
+    physical_aspect_physical_aspect_id: {
       type: DataTypes.STRING,
       allowNull: false,
     },

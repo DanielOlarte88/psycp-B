@@ -16,15 +16,12 @@ const ProfesStudies = sequelize.define(
     },
     profes_studies_career_code: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     profes_studies_edu_institution_code: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     profes_studies_instruction_level_code: {
       type: DataTypes.TINYINT,
-      allowNull: false,
     },
     profes_studies_with_mention: {
       type: DataTypes.STRING,
@@ -32,11 +29,9 @@ const ProfesStudies = sequelize.define(
     },
     profes_studies_instruction_year_code: {
       type: DataTypes.TINYINT,
-      allowNull: false,
     },
     profes_studies_studies_area_code: {
       type: DataTypes.TINYINT,
-      allowNull: false,
     },
     profes_profes_id: {
       type: DataTypes.INTEGER,

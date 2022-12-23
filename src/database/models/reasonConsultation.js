@@ -13,6 +13,10 @@ const ReasonConsultation = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    anamnesis_anamnesis_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     activate: {
       type: DataTypes.TINYINT,
       defaultValue: 1,
@@ -23,5 +27,19 @@ const ReasonConsultation = sequelize.define(
     timestamps: true,
   }
 );
+
+ReasonConsultation.findAllData = function (id) {
+
+  return ReasonConsultation.findAll({
+    where: {
+      anamnesis_anamnesis_id: id,
+      activate: 1
+    },
+    attributes: [
+      'reason_consultation_id',
+      [sequelize.col('reason_consultation'), 'value']
+    ]
+  })
+};
 
 module.exports = ReasonConsultation;

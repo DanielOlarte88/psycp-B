@@ -18,25 +18,20 @@ const ProfesSpec = sequelize.define(
     profes_profes_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
     },
     themes_themes_id: {
       type: DataTypes.SMALLINT,
       primaryKey: true,
-      allowNull: false,
     },
     themes_themes_groups_themes_groups_id: {
       type: DataTypes.SMALLINT,
       primaryKey: true,
-      allowNull: false,
     },
     themes_specialty_level: {
       type: DataTypes.TINYINT,
-      allowNull: false,
     },
     themes_experience_level: {
       type: DataTypes.TINYINT,
-      allowNull: false,
     },
     activate: {
       type: DataTypes.TINYINT,

@@ -7,8 +7,8 @@ const Profes = sequelize.define(
     profes_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
       autoIncrement: true,
+      allowNull: false,
     },
     profes_internal_code: {
       type: DataTypes.STRING,
@@ -16,7 +16,6 @@ const Profes = sequelize.define(
     },
     profes_residence_ubigeo: {
       type: DataTypes.STRING,
-      allowNull: true,
     },
     users_users_id: {
       type: DataTypes.INTEGER,

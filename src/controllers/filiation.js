@@ -12,15 +12,26 @@ const getItems = async (req, res) => {
   }
 };
 
+// const getItem = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const filiation_id = id;
+//     const data = await filiationModel.findOne({
+//       where: {
+//         filiation_id,
+//       },
+//     });
+//     res.send({ data });
+//   } catch (e) {
+//     handleHttpError(res, "ERROR_GET_ITEM");
+//   }
+// };
+
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const filiation_id = id;
-    const data = await filiationModel.findOne({
-      where: {
-        filiation_id,
-      },
-    });
+    console.log(id)
+    const data = await filiationModel.findOneData(id);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");

@@ -3,12 +3,22 @@ const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
-    const user = req.user;
-    const data = await filiationInformantModel.findAll({});
-    res.send({ data, user });
+    const data = await filiationInformantModel.findAll();
+    res.send({ data });
   } catch (e) {
     console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
+  }
+};
+
+const getItemsById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id)
+    const data = await filiationInformantModel.findAllData(id);
+    res.send({ data });
+  } catch (e) {
+    handleHttpError(res, "ERROR_GET_ITEM");
   }
 };
 
@@ -71,4 +81,4 @@ const deleteItem = async (req, res) => {
   }
 };
 
-module.exports = { getItems, getItem, createItem, updateItem, deleteItem };
+module.exports = { getItems, getItemsById, getItem, createItem, updateItem, deleteItem };

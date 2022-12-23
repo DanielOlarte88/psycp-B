@@ -15,12 +15,7 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const physical_condition_id = id;
-    const data = await physicalConditionModel.findOne({
-      where: {
-        physical_condition_id,
-      },
-    });
+    const data = await physicalConditionModel.findOneData(id);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");

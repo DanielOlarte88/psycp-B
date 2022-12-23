@@ -9,21 +9,17 @@ const PhysicVestment = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    level_description_id: {
+    motor_skills_level_description_id: {
       type: DataTypes.TINYINT,
-      allowNull: false,
     },
     clumsiness_int: {
       type: DataTypes.TINYINT,
-      allowNull: false,
     },
     slowness_int: {
       type: DataTypes.TINYINT,
-      allowNull: false,
     },
     looseness_int: {
       type: DataTypes.TINYINT,
-      allowNull: false,
     },
     physical_psychomotricity_physical_psychomotricity_id: {
       type: DataTypes.INTEGER,

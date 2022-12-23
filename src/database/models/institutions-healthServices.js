@@ -10,13 +10,11 @@ const Institutions_HealthServices = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-
     },
     health_services_health_services_id: {
       type: DataTypes.TINYINT,
       primaryKey: true,
       allowNull: false,
-
     },
     activate: {
       type: DataTypes.TINYINT,

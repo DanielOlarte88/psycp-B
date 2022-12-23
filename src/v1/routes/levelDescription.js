@@ -4,6 +4,7 @@ const authMiddleware = require("../../middleware/session");
 const checkRole = require("../../middleware/role");
 const {
   getItems,
+  getItemsById,
   getItem,
   createItem,
   updateItem,
@@ -11,6 +12,8 @@ const {
 } = require("../../controllers/levelDescription");
 
 router.get("/", getItems);
+
+router.get("/:id", getItemsById);
 
 router.get("/:id", getItem);
 

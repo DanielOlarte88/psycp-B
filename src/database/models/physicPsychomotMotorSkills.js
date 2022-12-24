@@ -1,7 +1,7 @@
 const { sequelize } = require("../../database/config/mysql");
 const { DataTypes } = require("sequelize");
 
-const PhysicVestment = sequelize.define(
+const PhysicPsychomotMotorSkills = sequelize.define(
   "physic_psychomot_motor_skills",
   {
     physic_psychomot_motor_skills_id: {
@@ -36,4 +36,4 @@ const PhysicVestment = sequelize.define(
   }
 );
 
-module.exports = PhysicVestment;
+module.exports = PhysicPsychomotMotorSkills;

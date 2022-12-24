@@ -13,10 +13,6 @@ const PhysicPsychomotSkillsType = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    physic_psychomot_motor_skills_physic_psychomot_motor_skills_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     activate: {
       type: DataTypes.TINYINT,
       defaultValue: 1,

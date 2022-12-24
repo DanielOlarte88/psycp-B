@@ -9,14 +9,14 @@ const {
   createItem,
   updateItem,
   deleteItem,
-} = require("../../controllers/physicalPsychomotricity");
+} = require("../../controllers/physicalAspectClarifications");
 
 router.get("/", 
   getItems
 );
 
 router.get("/:id", 
-  getItemsById
+getItemsById
 );
 
 router.get("/:id", 

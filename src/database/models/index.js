@@ -77,9 +77,11 @@ const models = {
       physicPsychomotMotorSkillsModel: require(`../../database/models/physicPsychomotMotorSkills`),
       physicPsychomotKinetCondiModel: require(`../../database/models/physicPsychomotKinetCondi`),
       physicPsychomotKinetHarmoModel: require(`../../database/models/physicPsychomotKinetHarmo`),
-      physicPsychomotKinetHarmoModel: require(`../../database/models/physicPsychomotKinetHarmo`),
+      physicPsychomotKinetHarmo_physicPsychomotKinetCondiModel: require(`../../database/models/physicPsychomotKinetHarmo-physicPsychomotKinetCondi`),
       physicPsychomotSkillsTypeModel: require(`../../database/models/physicPsychomotSkillsType`),
       levelDescriptionModel: require(`../../database/models/levelDescription`),
+
+      physicalAspectClarificationsModel: require(`../../database/models/physicalAspectClarifications`),
 
       
       

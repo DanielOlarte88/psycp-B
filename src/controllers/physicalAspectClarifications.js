@@ -1,10 +1,10 @@
-const { physicalPsychomotricityModel } = require("../database/models");
+const { physicalAspectClarificationsModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
-    const data = await physicalPsychomotricityModel.findAll({});
+    const data = await physicalAspectClarificationsModel.findAll({});
     res.send({ data, user });
   } catch (e) {
     console.log(e);
@@ -15,7 +15,7 @@ const getItems = async (req, res) => {
 const getItemsById = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await physicalPsychomotricityModel.findAllData(id);
+    const data = await physicalAspectClarificationsModel.findAllData(id);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");
@@ -26,7 +26,7 @@ const getItem = async (req, res) => {
   try {
     const { id } = req.params;
     const physical_psychomotricity_id = id;
-    const data = await physicalPsychomotricityModel.findOne({
+    const data = await physicalAspectClarificationsModel.findOne({
       where: {
         physical_psychomotricity_id,
       },
@@ -40,7 +40,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await physicalPsychomotricityModel.create(body);
+    const data = await physicalAspectClarificationsModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {
@@ -53,7 +53,7 @@ const updateItem = async (req, res) => {
     const { id } = req.params;
     const physical_psychomotricity_id = id;
     const { physical_psychomotricity, activate } = req.body;
-    const data = await physicalPsychomotricityModel.findByPk(physical_psychomotricity_id);
+    const data = await physicalAspectClarificationsModel.findByPk(physical_psychomotricity_id);
     data.physical_psychomotricity = physical_psychomotricity;
     data.activate = activate;
     await data.save();
@@ -68,7 +68,7 @@ const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
     const physical_psychomotricity_id = id;
-    const data = await physicalPsychomotricityModel.destroy({
+    const data = await physicalAspectClarificationsModel.destroy({
       where: {
         physical_psychomotricity_id,
       },

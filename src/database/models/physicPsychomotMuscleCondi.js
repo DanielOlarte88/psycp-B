@@ -5,7 +5,7 @@ const PhysicPsychomotMuscleCondi = sequelize.define(
   "physic_psychomot_muscle_condi",
   {
     physic_psychomot_muscle_condi_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TINYINT,
       primaryKey: true,
       autoIncrement: true,
     },

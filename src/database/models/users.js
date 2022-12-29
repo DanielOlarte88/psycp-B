@@ -16,6 +16,7 @@ const Users = sequelize.define(
     },
     users_second_name: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     users_third_name: {
       type: DataTypes.STRING,
@@ -23,7 +24,7 @@ const Users = sequelize.define(
     },
     users_first_surname: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     users_second_surname: {
       type: DataTypes.STRING,

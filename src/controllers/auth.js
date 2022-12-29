@@ -20,6 +20,7 @@ const registerCtrl = async (req, res) => {
     const data = {
       token: await tokenSign(dataUser),
       profes_id: dataProfes.profes_id,
+      users_first_name: dataUser.users_first_name,
     };
     res.status(201);
     res.send({ data });
@@ -52,6 +53,7 @@ const loginCtrl = async (req, res) => {
     const data = {
       token: await tokenSign(user),
       profes_id: dataProfes.profes_id,
+      users_first_name: user.users_first_name,
     };
 
     res.send({ data });

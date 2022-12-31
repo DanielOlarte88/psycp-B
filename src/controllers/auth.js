@@ -10,6 +10,11 @@ const registerCtrl = async (req, res) => {
     req = matchedData(req);
     const password = await encrypt(req.password);
     const body = { ...req, password };
+    const users_license_num = body.users_license_num;
+    if (users_license_num !== "") {
+      body.users_role = "profes";
+      return;
+    }
     const dataUser = await usersModel.create(body);
     
     const users_users_id = dataUser.users_id

@@ -4,6 +4,7 @@ const { tokenSign } = require("../database/utils/handleJwt");
 const { handleHttpError } = require("../database/utils/handleError");
 const { usersModel } = require("../database/models");
 const { profesModel } = require("../database/models");
+const { profesTuitionModel } = require("../database/models");
 
 const registerCtrl = async (req, res) => {
   try {
@@ -11,13 +12,26 @@ const registerCtrl = async (req, res) => {
     const password = await encrypt(req.password);
     const body = { ...req, password };
     const users_license_num = body.users_license_num;
-    if (users_license_num !== "") {
-      body.users_role = "profes";
+    const users_first_surname = body.users_first_surname;
+    const users_second_surname = body.users_second_surname;
+    const users_surnames = users_first_surname.concat(' ', users_second_surname);
+
+    const profesTuition = await profesTuitionModel.findOne({ where: {profes_tuition_code: users_license_num} });
+    if (profesTuition === null) {
+      handleHttpError(res, "NUM_LICENSES_NOT_EXIST", 404);
       return;
     }
-    const dataUser = await usersModel.create(body);
+
+    const profes_tuition_surnames = profesTuition.profes_tuition_surnames;
+    if (users_surnames !== profes_tuition_surnames) {
+      handleHttpError(res, "SURNAMES_NOT_MATCH", 404);
+      return;
+    }
+    body.users_role = "profes";
+    body.activate = 1;
     
-    const users_users_id = dataUser.users_id
+    const dataUser = await usersModel.create(body);
+    const users_users_id = dataUser.users_id;
     const bodyProfes = { users_users_id };
     const dataProfes = await profesModel.create(bodyProfes);
     dataUser.set("password", undefined, { strict: false });

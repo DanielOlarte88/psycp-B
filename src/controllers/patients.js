@@ -1,4 +1,5 @@
 const { handleHttpError } = require("../database/utils/handleError");
+// const { usersModel } = require("../database/models");
 const { patientsModel } = require("../database/models");
 const moment = require('moment')
 let { AgeFromDateString } = require('age-calculator');
@@ -43,10 +44,44 @@ const getItem = async (req, res) => {
 //   }
 // };
 
-const createItem = async (req, res) => {
+const createItem = async (req, res, next) => {
   try {
     const body = req.body;
     const data = await patientsModel.create(body);
+      // users_first_name: body.users_first_name,
+      // users_second_name: body.users_second_name,
+      // users_third_name: body.users_third_name,
+      // users_first_surname: body.users_first_surname,
+      // users_second_surname: body.users_second_surname,
+      // users_identification_num: body.users_identification_num,
+      // users_birth_date: body.users_birth_date,
+      // users_birth_hour: body.users_birth_hour,
+      // birth_sexes_birth_sexes_id: body.birth_sexes_birth_sexes_id,
+			// activate: 1,
+      // users_cellphone: "0",
+			// users_license_num: 0,
+			// users_terms: false,
+			// email: "a@a.com",
+			// password: "0",
+			// users_role: "patient",
+			// mental_careers_mental_careers_id: null,
+			// status_licenses_status_licenses_id: null,
+			// users_surnames_order_reverse: null,
+			// users_birth_iso3366: null,
+			// users_birth_ubigeo: null,
+			// users_residence_iso3366: "",
+		  // users_residence_department: "",
+			// users_residence_province: "",
+			// users_residence_district: "",
+			// users_residence_ubigeo: "",
+    // });
+
+    // const dataPatients = await patientsModel.create({
+    //   patients_internal_code: body.patients_internal_code,
+    //   users_users_id: body.users_users_id,
+    //   activate: body.activate
+    // });
+
     res.status(201);
     res.send({ data });
   } catch (e) {

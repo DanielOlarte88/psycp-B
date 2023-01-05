@@ -73,7 +73,7 @@ ProfesStudies.findAllData = function (id) {
       [sequelize.col('instruction_level.instruction_levels'), 'profes_studies_instruction_level_code'],
       [sequelize.col('instruction_year.instruction_years'), 'profes_studies_instruction_year_code'],
       [sequelize.col('studies_area.studies_area'), 'profes_studies_studies_area_code'],
-      'profes_studies_with_mention'
+      "profes_studies_id", 'profes_studies_with_mention'
     ],
     raw: true,
   })

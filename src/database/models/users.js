@@ -38,12 +38,10 @@ const Users = sequelize.define(
     users_cellphone: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     users_license_num: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
     },
     users_terms: {
       type: DataTypes.BOOLEAN,
@@ -52,7 +50,6 @@ const Users = sequelize.define(
     email: {
       type: String,
       allowNull: false,
-      unique: true,
     },
     password: {
       type: String,

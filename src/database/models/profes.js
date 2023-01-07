@@ -49,6 +49,7 @@ Profes.findOneData = function (id) {
     ],
     attributes: [
       'profes_internal_code', 'profes_id',
+      [sequelize.col('user.users_id'), 'users_id'],
       [sequelize.col('user.users_first_surname'), 'users_first_surname'],
       [sequelize.col('user.users_second_surname'), 'users_second_surname'],
       [sequelize.col('user.users_first_name'), 'users_first_name'],

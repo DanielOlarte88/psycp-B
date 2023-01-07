@@ -7,6 +7,8 @@ const Institutions_Profes = sequelize.define(
     institutions_has_profes_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
+      unique: true,
       allowNull: false,
     },
     institutions_institutions_id: {

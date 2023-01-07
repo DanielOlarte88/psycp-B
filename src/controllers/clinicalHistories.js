@@ -1,7 +1,8 @@
-const { clinicalHistoriesModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
 const moment = require('moment')
 let { AgeFromDateString } = require('age-calculator');
+const { clinicalHistoriesModel } = require("../database/models");
+const { professional_patientsModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
@@ -18,7 +19,6 @@ const getItemsById = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await clinicalHistoriesModel.findAllData(id);
-
     // var createdAtHCP = data[0].createdAt;
     // var birthDateHCP = data[0].users_birth_date;
 
@@ -52,7 +52,21 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    const data = await clinicalHistoriesModel.create(body);
+    const dataProfesPatients = await professional_patientsModel.findOne({ 
+      where: {
+        institutions_has_profes_institutions_has_profes_id: body.instProfes_id, 
+        patients_patients_id: body.patients_id
+      } 
+    });
+
+    const bodyclinicalHistories = {
+      professional_has_patients_professional_has_patients_id: dataProfesPatients.professional_has_patients_id,
+      hcp_internal_code: "",
+      activate: 1
+    }
+
+    const data = await clinicalHistoriesModel.create(bodyclinicalHistories);
+    console.log(data)
     res.status(201);
     res.send({ data });
   } catch (e) {

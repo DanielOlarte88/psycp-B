@@ -1,7 +1,5 @@
 const { handleHttpError } = require("../database/utils/handleError");
-const { matchedData } = require("express-validator");
 const { usersModel } = require("../database/models");
-const { patientsModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
@@ -31,37 +29,7 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
   try {
     const body = req.body;
-    body.users_license_num = 77991;
-    body.users_terms = 0;
-    body.email = "anonimo77991@gmail.com";
-    body.password = "77991";
-    body.users_role = "patient";
-    body.users_cellphone = "77991";
-    body.mental_careers_mental_careers_id = 1;
-    body.status_licenses_status_licenses_id = 1;
-    body.users_surnames_order_reverse = null;
-    body.users_birth_iso3366 = null;
-    body.users_birth_ubigeo = null;
-    body.users_residence_iso3366 = null;
-    body.users_residence_department = null;
-    body.users_residence_province = null;
-    body.users_residence_district = null;
-    body.users_residence_ubigeo = null;
-    body.activate = 1;
-    const dataUser = await usersModel.create(body);
-    
-    const users_users_id = dataUser.users_id;
-    const activate = dataUser.activate;
-    const patients_internal_code = "";
-    const bodyPatient = { users_users_id, activate, patients_internal_code };
-    const data = await patientsModel.create(bodyPatient);
-    // const dataPatient = await patientsModel.create(bodyPatient);
-    // const patients_id = dataPatient.dataValues.patients_id;
-    // const patients_code = `NPat-00${patients_id}`;
-    // const data = await patientsModel.findByPk(patients_id);
-    // data.dataValues.patients_internal_code = patients_code;
-    // console.log(data)
-    // await data.save();
+    const data = await usersModel.create(body);
     res.status(201);
     res.send({ data });
   } catch (e) {

@@ -10,6 +10,7 @@ const Professional_Patients = sequelize.define(
     professional_has_patients_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: true,
       allowNull: false,
     },
     institutions_has_profes_institutions_has_profes_id: {

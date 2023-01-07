@@ -44,7 +44,7 @@ const Users = sequelize.define(
       allowNull: false,
     },
     users_terms: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.TINYINT,
       allowNull: false,
     },
     email: {

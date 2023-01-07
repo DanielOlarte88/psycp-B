@@ -70,6 +70,7 @@ Patients.findOneData = function (id) {
       [sequelize.col('user.users_residence_province'), 'users_residence_province'],
       [sequelize.col('user.users_residence_district'), 'users_residence_district'],
       [sequelize.col('user.birth_sex.birth_sexes'), 'users_birth_sexes'],
+      [sequelize.col('user.users_terms'), 'users_terms'],
       // Reemplazar a residence
       // [sequelize.col('user.users_birth_iso3366'), 'users_birth_iso3366'],
       // [sequelize.col('user.users_birth_department'), 'users_birth_department'], 

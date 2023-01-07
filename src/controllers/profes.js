@@ -67,8 +67,6 @@ const getItem = async (req, res) => {
 
     data.dataValues = modelForm;
     data.dataValues.users_id = profes.users_id;
-    console.log(data)
-
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");

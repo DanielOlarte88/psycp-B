@@ -5,6 +5,7 @@ const { handleHttpError } = require("../database/utils/handleError");
 const { usersModel } = require("../database/models");
 const { profesModel } = require("../database/models");
 const { profesTuitionModel } = require("../database/models");
+const { institutions_profesModel } = require("../database/models");
 
 const registerCtrl = async (req, res) => {
   try {
@@ -36,10 +37,23 @@ const registerCtrl = async (req, res) => {
     const dataProfes = await profesModel.create(bodyProfes);
     dataUser.set("password", undefined, { strict: false });
 
+    const bodyInstProfes = {
+      institutions_institutions_id: 1,
+      profes_profes_id: dataProfes.profes_id,
+      institutions_user_internal_code: 1,
+      institutions_user_email: dataUser.email,
+      institutions_user_password: password,
+      institutions_user_state: 1,
+      user_mode_user_mode_id: 1,
+      activate: 1
+    }
+    const dataInstProfes = await institutions_profesModel.create(bodyInstProfes);
+
     const data = {
       token: await tokenSign(dataUser),
       profes_id: dataProfes.profes_id,
       users_first_name: dataUser.users_first_name,
+      institutions_profes_id: dataInstProfes.institutions_has_profes_id,
     };
     res.status(201);
     res.send({ data });
@@ -54,7 +68,8 @@ const loginCtrl = async (req, res) => {
     req = matchedData(req);
     const user = await usersModel.findOne({ where: {email: req.email} });
     const dataProfes = await profesModel.findOne({ where: {users_users_id: user.users_id} });
-    
+    const dataInstProfes = await institutions_profesModel.findOne({ where: {institutions_user_email: req.email} });
+
     if (!user) {
       handleHttpError(res, "USER_NOT_EXISTS", 404);
       return;
@@ -73,6 +88,7 @@ const loginCtrl = async (req, res) => {
       token: await tokenSign(user),
       profes_id: dataProfes.profes_id,
       users_first_name: user.users_first_name,
+      institutions_profes_id: dataInstProfes.institutions_has_profes_id,
     };
 
     res.send({ data });

@@ -1,8 +1,8 @@
 const { handleHttpError } = require("../database/utils/handleError");
-// const { usersModel } = require("../database/models");
-const { patientsModel } = require("../database/models");
 const moment = require('moment')
 let { AgeFromDateString } = require('age-calculator');
+const { patientsModel } = require("../database/models");
+const { clinicalHistoriesModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
@@ -19,10 +19,22 @@ const getItem = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await patientsModel.findOneData(id);
-    var date = data.users_birth_date
-    var EditedDob = moment(date, "YYYY-MM-DD").format('DD-MM-YYYY')
-    var age = new AgeFromDateString(EditedDob).age;
-    data.users_age = `${age} años`
+
+    var birthDate = data.users_birth_date;
+    var a = moment();
+    var b = moment(birthDate);
+    
+    var years = a.diff(b, 'year');
+    b.add(years, 'years');
+    
+    var months = a.diff(b, 'months');
+    b.add(months, 'months');
+    
+    var days = a.diff(b, 'days');
+
+    const age = `${years}a  ${months}m  ${days}d`
+    data.users_age = age
+    
     console.log(data)
     res.send({ data });
   } catch (e) {

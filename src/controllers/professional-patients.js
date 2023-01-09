@@ -45,51 +45,163 @@ const createItem = async (req, res) => {
     // const activate = 1;
     // activate = 1; condicionar activate a "0" si es que el user, patient o profesPatient esta desactivado
     const body = req.body;
-    body.users_license_num = 88886;
-    body.users_terms = 0;
-    body.email = "anonimo88886@gmail.com";
-    body.password = "88886";
-    body.users_role = "patient";
-    body.users_cellphone = "88886";
-    body.mental_careers_mental_careers_id = 1;
-    body.status_licenses_status_licenses_id = 1;
-    body.users_surnames_order_reverse = null;
-    body.users_birth_iso3366 = null;
-    body.users_birth_ubigeo = null;
-    body.users_residence_iso3366 = null;
-    body.users_residence_department = null;
-    body.users_residence_province = null;
-    body.users_residence_district = null;
-    body.users_residence_ubigeo = null;
-    body.activate = 1;
-    const dataUser = await usersModel.create(body);
+    const dataUser = await usersModel.findOne({ where: {users_identification_num: body.users_identification_num} });
+    console.log(dataUser)
+
+    if (!dataUser) {
+      console.log(body)
+      try {
+        body.users_license_num = 66693;
+        body.users_terms = 0;
+        body.email = "anonimo66693@gmail.com";
+        body.password = "66693";
+        body.users_role = "patient";
+        body.users_cellphone = "66693";
+        body.mental_careers_mental_careers_id = 1;
+        body.status_licenses_status_licenses_id = 1;
+        body.users_surnames_order_reverse = null;
+        body.users_birth_iso3366 = null;
+        body.users_birth_ubigeo = null;
+        body.users_residence_iso3366 = null;
+        body.users_residence_department = null;
+        body.users_residence_province = null;
+        body.users_residence_district = null;
+        body.users_residence_ubigeo = null;
+        body.activate = 1;
+        const dataUserNew = await usersModel.create(body);
+        
+        const bodyPatientNew = { 
+          users_users_id: dataUserNew.users_id, 
+          patients_internal_code: "",
+          activate: 1,
+        };
+        console.log(bodyPatientNew)
+        const dataPatientNew = await patientsModel.create(bodyPatientNew);
+        // // const dataPatient = await patientsModel.create(bodyPatient);
+        // // const patients_id = dataPatient.dataValues.patients_id;
+        // // const patients_code = `NPat-00${patients_id}`;
+        // // const data = await patientsModel.findByPk(patients_id);
+        // // data.dataValues.patients_internal_code = patients_code;
+        // // console.log(data)
+        // // await data.save();
+        console.log(dataPatientNew)
+
+        const instProfesIdNew = parseInt(body.instProfesId, 10)
+        console.log(instProfesIdNew)
+
+        const bodyProfesPatientNew = { 
+          institutions_has_profes_institutions_has_profes_id: instProfesIdNew,
+          patients_patients_id: dataPatientNew.patients_id,
+          professional_has_patients_state: 1,
+          activate: 1
+        };
+        console.log(bodyProfesPatientNew)
+
+        const data = await professional_patientsModel.create(bodyProfesPatientNew);
+        console.log(data)
+        res.status(201);
+        res.send({ data });
+        return;
+      } catch (e) {
+        handleHttpError(res, "ERROR_CREATE_ITEMS");
+      }
+    }
+
+    if (dataUser.users_identification_num === body.users_identification_num) {
+      try {
+        const dataPatient = await patientsModel.findOne({ where: {users_users_id: dataUser.users_id} });
+        const instProfesId = parseInt(body.instProfesId, 10);
+        const dataProfesPatients = await professional_patientsModel.findOne({ 
+          where: {
+            patients_patients_id: dataPatient.patients_id,
+            institutions_has_profes_institutions_has_profes_id: instProfesId
+          } 
+        });
+        console.log(dataPatient.patients_id)
+        console.log(instProfesId)
+        console.log(dataProfesPatients)
+        
+        if (!dataProfesPatients) {
+          try{
+            const bodyProfesPatient = { 
+              institutions_has_profes_institutions_has_profes_id: instProfesId,
+              patients_patients_id: dataPatient.patients_id,
+              professional_has_patients_state: 1,
+              activate: 1
+            };
     
-    const bodyPatient = { 
-      users_users_id: dataUser.users_id, 
-      patients_internal_code: "",
-      activate: 1,
-    };
-    const dataPatient = await patientsModel.create(bodyPatient);
-    // // const dataPatient = await patientsModel.create(bodyPatient);
-    // // const patients_id = dataPatient.dataValues.patients_id;
-    // // const patients_code = `NPat-00${patients_id}`;
-    // // const data = await patientsModel.findByPk(patients_id);
-    // // data.dataValues.patients_internal_code = patients_code;
-    // // console.log(data)
-    // // await data.save();
+            const data = await professional_patientsModel.create(bodyProfesPatient);
+            res.status(201);
+            res.send({ data });
+            return;
+          } catch (e) {
+            handleHttpError(res, "ERROR_CREATE_ITEMS");
+          }
+        }
+        
+        if (dataProfesPatients.institutions_has_profes_institutions_has_profes_id === instProfesId) {
+          handleHttpError(res, "NUM_DNI_ALREADY_EXIST", 404);
+          return;
+        }
+      } catch (e) {
+        handleHttpError(res, "ERROR_CREATE_ITEMS");
+      }
+    }
+    // } else {
+    //   console.log(body)
+    //   try {
+    //     body.users_license_num = 666;
+    //     body.users_terms = 0;
+    //     body.email = "anonimo666@gmail.com";
+    //     body.password = "666";
+    //     body.users_role = "patient";
+    //     body.users_cellphone = "666";
+    //     body.mental_careers_mental_careers_id = 1;
+    //     body.status_licenses_status_licenses_id = 1;
+    //     body.users_surnames_order_reverse = null;
+    //     body.users_birth_iso3366 = null;
+    //     body.users_birth_ubigeo = null;
+    //     body.users_residence_iso3366 = null;
+    //     body.users_residence_department = null;
+    //     body.users_residence_province = null;
+    //     body.users_residence_district = null;
+    //     body.users_residence_ubigeo = null;
+    //     body.activate = 1;
+    //     console.log(body)
+    //     const dataUserNew = await usersModel.create(body);
+    //     console.log(dataUserNew)
+        
+    //     const bodyPatientNew = { 
+    //       users_users_id: dataUserNew.users_id, 
+    //       patients_internal_code: "",
+    //       activate: 1,
+    //     };
+    //     console.log(bodyPatientNew)
+    //     const dataPatientNew = await patientsModel.create(bodyPatientNew);
+    //     // // const dataPatient = await patientsModel.create(bodyPatient);
+    //     // // const patients_id = dataPatient.dataValues.patients_id;
+    //     // // const patients_code = `NPat-00${patients_id}`;
+    //     // // const data = await patientsModel.findByPk(patients_id);
+    //     // // data.dataValues.patients_internal_code = patients_code;
+    //     // // console.log(data)
+    //     // // await data.save();
 
-    const dataInstitutionsProfes = await institutions_profesModel.findOne({ where: {profes_profes_id: body.profes_id} });
+    //     const instProfesIdNew = parseInt(body.instProfesIdNew, 10)
 
-    const bodyProfesPatient = { 
-      institutions_has_profes_institutions_has_profes_id: dataInstitutionsProfes.institutions_has_profes_id,
-      patients_patients_id: dataPatient.patients_id,
-      professional_has_patients_state: 1,
-      activate: 1
-    };
-    const data = await professional_patientsModel.create(bodyProfesPatient);
-    console.log(data)
-    res.status(201);
-    res.send({ data });
+    //     const bodyProfesPatientNew = { 
+    //       institutions_has_profes_institutions_has_profes_id: instProfesIdNew,
+    //       patients_patients_id: dataPatient.patients_id,
+    //       professional_has_patients_state: 1,
+    //       activate: 1
+    //     };
+    //     const data = await professional_patientsModel.create(bodyProfesPatientNew);
+    //     res.status(201);
+    //     res.send({ data });
+    //     return;
+    //   } catch (e) {
+    //     handleHttpError(res, "ERROR_CREATE_ITEMS");
+    //   }
+    // }
   } catch (e) {
     handleHttpError(res, "ERROR_CREATE_ITEMS");
   }

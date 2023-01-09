@@ -1,5 +1,11 @@
 const { sequelize } = require("../../database/config/mysql");
 const { DataTypes } = require("sequelize");
+const ClinicalHistories = require("./professional-patients");
+const Professional_Patients = require("./professional-patients");
+const Institutions_Profes = require("./institutions-profes");
+const Profes = require("./profes");
+const Patients = require("./patients");
+const Users = require("./users");
 
 const Anamnesis = sequelize.define(
   "anamnesis",
@@ -27,3 +33,4 @@ const Anamnesis = sequelize.define(
 );
 
 module.exports = Anamnesis;
+

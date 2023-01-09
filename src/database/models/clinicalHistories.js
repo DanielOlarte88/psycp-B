@@ -67,12 +67,12 @@ ClinicalHistories.findAllData = function (id) {
       ]
     }],
     attributes: [
-      'hcp_internal_code', 'clinicalHistories_id',
+      [sequelize.fn('concat', '00', sequelize.col('clinicalHistories_id')), 'clinicalHistories_id'],
       [sequelize.fn('DATE_FORMAT', sequelize.col('clinicalHistories.createdAt'), '%Y-%m-%d'), 'createdAt'],
-      // [sequelize.fn('TIMESTAMPDIFF', sequelize.literal('YEAR'), sequelize.col('users_birth_date'), sequelize.col('createdAt')), 'timePlayed']
+      [sequelize.fn('TIMESTAMPDIFF', sequelize.literal('YEAR'), sequelize.col('professional_has_patient.patient.user.users_birth_date'), sequelize.literal('CURRENT_TIMESTAMP')), 'hcp_patient_age'], 
       [sequelize.col('professional_has_patient.patients_patients_id'), 'patients_patients_id'],
       [sequelize.col('professional_has_patient.patient.user.users_birth_date'), 'users_birth_date'],
-      [sequelize.col('professional_has_patient.institutions_has_profe.profe.profes_internal_code'), 'profes_internal_code'],
+      [sequelize.fn('concat', 'NPro-00', sequelize.col('professional_has_patient.institutions_has_profes_institutions_has_profes_id')), 'instProfes_id'],
     ],
     raw: true,
   })

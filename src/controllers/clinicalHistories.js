@@ -1,14 +1,15 @@
 const { handleHttpError } = require("../database/utils/handleError");
-const moment = require('moment')
-let { AgeFromDateString } = require('age-calculator');
+const { anamnesisModel } = require("../database/models");
 const { clinicalHistoriesModel } = require("../database/models");
 const { professional_patientsModel } = require("../database/models");
+const { patientsModel } = require("../database/models");
+const { usersModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
     const user = req.user;
     const data = await clinicalHistoriesModel.findAll({});
-    res.send({ data, user });
+    res.send({ data });
   } catch (e) {
     console.log(e);
     handleHttpError(res, "ERROR_GET_ITEMS");
@@ -19,15 +20,7 @@ const getItemsById = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await clinicalHistoriesModel.findAllData(id);
-    // var createdAtHCP = data[0].createdAt;
-    // var birthDateHCP = data[0].users_birth_date;
-
-    // var dateHCP = moment(birthDateHCP, "YYYY-MM-DD").format('YYYY-MM-DD')
-    // var ageHCP = new AgeFromDateString(dateHCP).age;
-    // console.log(ageHCP)
-
-    // data.dateHCP = `${dateHCP} años`
-    // data.ageHCP = `${ageHCP}`
+    console.log(data);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");
@@ -37,12 +30,7 @@ const getItemsById = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const clinicalHistories_id = id;
-    const data = await clinicalHistoriesModel.findOne({
-      where: {
-        clinicalHistories_id,
-      },
-    });
+    const data = await clinicalHistoriesModel.findOne(id);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");
@@ -59,13 +47,19 @@ const createItem = async (req, res) => {
       } 
     });
 
-    const bodyclinicalHistories = {
+    const bodyClinicalHistories = {
       professional_has_patients_professional_has_patients_id: dataProfesPatients.professional_has_patients_id,
       hcp_internal_code: "",
       activate: 1
     }
+    const dataClinicalHistories = await clinicalHistoriesModel.create(bodyClinicalHistories);
 
-    const data = await clinicalHistoriesModel.create(bodyclinicalHistories);
+    const bodyAnamnesis = {
+      clinicalHistories_clinicalHistories_id: dataClinicalHistories.clinicalHistories_id,
+      activate: 1
+    }
+    const data = await anamnesisModel.create(bodyAnamnesis);
+    
     console.log(data)
     res.status(201);
     res.send({ data });

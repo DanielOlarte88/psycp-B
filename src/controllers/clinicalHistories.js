@@ -49,7 +49,6 @@ const createItem = async (req, res) => {
 
     const bodyClinicalHistories = {
       professional_has_patients_professional_has_patients_id: dataProfesPatients.professional_has_patients_id,
-      hcp_internal_code: "",
       activate: 1
     }
     const dataClinicalHistories = await clinicalHistoriesModel.create(bodyClinicalHistories);

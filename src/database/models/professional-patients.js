@@ -54,7 +54,7 @@ Professional_Patients.findAllData = function (id) {
       }],
     }],
     attributes: [
-      [sequelize.col('patient.patients_internal_code'), 'patients_internal_code'],
+      [sequelize.fn('concat', 'NPat - ', sequelize.col('patient.patients_id')), 'patients_internal_code'],
       [sequelize.col('patient.patients_id'), 'patients_id'],
       [sequelize.col('patient.user.users_first_name'), 'users_first_name'],
       [sequelize.col('patient.user.users_second_name'), 'users_second_name'],

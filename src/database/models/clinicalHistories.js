@@ -17,10 +17,6 @@ const ClinicalHistories = sequelize.define(
       autoIncrement: true,
       unique: true,
     },
-    hcp_internal_code: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     professional_has_patients_professional_has_patients_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -72,7 +68,7 @@ ClinicalHistories.findAllData = function (id) {
       [sequelize.fn('TIMESTAMPDIFF', sequelize.literal('YEAR'), sequelize.col('professional_has_patient.patient.user.users_birth_date'), sequelize.literal('CURRENT_TIMESTAMP')), 'hcp_patient_age'], 
       [sequelize.col('professional_has_patient.patients_patients_id'), 'patients_patients_id'],
       [sequelize.col('professional_has_patient.patient.user.users_birth_date'), 'users_birth_date'],
-      [sequelize.fn('concat', 'NPro-00', sequelize.col('professional_has_patient.institutions_has_profes_institutions_has_profes_id')), 'instProfes_id'],
+      [sequelize.fn('concat', 'NPro - ', sequelize.col('professional_has_patient.institutions_has_profes_institutions_has_profes_id')), 'instProfes_id'],
     ],
     raw: true,
   })

@@ -1,5 +1,6 @@
-const { profesModel } = require("../database/models");
 const { handleHttpError } = require("../database/utils/handleError");
+const { profesModel } = require("../database/models");
+const { usersModel } = require("../database/models");
 
 const getItems = async (req, res) => {
   try {
@@ -39,7 +40,18 @@ const getItem = async (req, res) => {
       var users_names = users_first_name.toUpperCase()
     };
     profes.users_names = users_names;
-    profes.profes_internal_code = `NPro-00${data.profes_id}`;
+
+    profes.profes_internal_code = `NPro - ${data.profes_id}`;
+
+    profes.users_residence_ubigeo === null 
+      ? profes.users_residence_department = null 
+      : profes.users_residence_department = profes.users_residence_ubigeo.substr(0, 2); 
+    profes.users_residence_ubigeo === null 
+      ? profes.users_residence_province = null 
+      : profes.users_residence_province = profes.users_residence_ubigeo.substr(0, 4); 
+    profes.users_residence_ubigeo === null 
+      ? profes.users_residence_district = null 
+      : profes.users_residence_district = profes.users_residence_ubigeo.substr(0, 6); 
 
     const filteredKeys1 = [
             'profes_internal_code',
@@ -60,13 +72,13 @@ const getItem = async (req, res) => {
           "users_residence_department",
           "users_residence_province",
           "users_residence_district",
-          'users_residence_ubigeo',
         ];
     const group2 = filteredKeys2.reduce((obj, key) => ({ ...obj, [key]: profes[key] }), {});
     const modelForm = { group1, group2 };
 
     data.dataValues = modelForm;
     data.dataValues.users_id = profes.users_id;
+    console.log(data)
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");
@@ -87,18 +99,27 @@ const createItem = async (req, res) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const profes_id = id;
     const { 
-      profes_internal_code,
-      profes_residence_ubigeo,
-      users_users_id,
-      activate 
+      users_birth_date,
+      users_birth_hour,
+      users_residence_iso3366,
+      users_residence_department,
+      users_residence_province,
+      users_residence_district,
+      users_residence_ubigeo,
+      birth_sexes_birth_sexes_id,
     } = req.body;
-    const data = await profesModel.findByPk(profes_id);
-    data.profes_internal_code = profes_internal_code;
-    data.profes_residence_ubigeo = profes_residence_ubigeo;
-    data.users_userss_id = users_users_id;
-    data.activate = activate;
+    const dataProfes = await profesModel.findByPk(id);
+    const users_id = dataProfes.users_users_id
+    const data = await usersModel.findByPk(users_id);
+    data.users_birth_date = users_birth_date;
+    data.users_birth_hour = users_birth_hour;
+    data.users_residence_iso3366 = users_residence_iso3366;
+    data.users_residence_department = users_residence_department;
+    data.users_residence_province = users_residence_province;
+    data.users_residence_district = users_residence_district;
+    data.users_residence_ubigeo = users_residence_ubigeo;
+    data.birth_sexes_birth_sexes_id = birth_sexes_birth_sexes_id;
     await data.save();
     res.status(200);
     res.send({ data });

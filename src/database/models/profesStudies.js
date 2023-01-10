@@ -57,7 +57,7 @@ ProfesStudies.findAllData = function (id) {
 
   return ProfesStudies.findAll({
     where: {
-      profes_profes_id: 1,
+      profes_profes_id: id,
       activate: 1
     },
     include: [

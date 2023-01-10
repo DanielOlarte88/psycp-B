@@ -43,16 +43,16 @@ const Users = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    users_terms: {
-      type: DataTypes.TINYINT,
-      allowNull: false,
-    },
     email: {
       type: String,
       allowNull: false,
     },
     password: {
       type: String,
+      allowNull: false,
+    },
+    users_terms: {
+      type: DataTypes.TINYINT,
       allowNull: false,
     },
     users_role: {
@@ -88,18 +88,6 @@ const Users = sequelize.define(
       allowNull: true,
     },
     users_residence_iso3366: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    users_residence_department: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    users_residence_province: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    users_residence_district: {
       type: DataTypes.STRING,
       allowNull: true,
     },

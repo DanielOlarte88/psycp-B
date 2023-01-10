@@ -42,7 +42,6 @@ const updateItem = async (req, res) => {
     const { id } = req.params;
     const users_id = id;
     const { 
-      users_surnames_order_reverse,
       users_birth_date,
       users_birth_hour,
       users_residence_iso3366,
@@ -51,9 +50,8 @@ const updateItem = async (req, res) => {
       users_residence_district,
       users_residence_ubigeo,
       birth_sexes_birth_sexes_id,
-      activate 
     } = req.body;
-    const data = await usersModel.findByPk(users_id);
+    const data = await usersModel.findByPk(id);
     data.users_birth_date = users_birth_date;
     data.users_birth_hour = users_birth_hour;
     data.users_residence_iso3366 = users_residence_iso3366;
@@ -62,7 +60,6 @@ const updateItem = async (req, res) => {
     data.users_residence_district = users_residence_district;
     data.users_residence_ubigeo = users_residence_ubigeo;
     data.birth_sexes_birth_sexes_id = birth_sexes_birth_sexes_id;
-    data.activate = activate;
     await data.save();
     res.status(200);
     res.send({ data });

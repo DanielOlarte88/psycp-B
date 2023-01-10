@@ -14,11 +14,8 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await profesSpecModel.findAllData({
-      where: {
-        profes_profes_id: id,
-      },
-    });
+    console.log(id)
+    const data = await profesSpecModel.findAllData(id);
     
     res.send({ data });
   } catch (e) {

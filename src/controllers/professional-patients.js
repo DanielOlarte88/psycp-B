@@ -19,6 +19,7 @@ const getItem = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await professional_patientsModel.findAllData(id);
+        console.log(data);
     res.send({ data });
   } catch (e) {
     handleHttpError(res, "ERROR_GET_ITEM");
@@ -51,12 +52,12 @@ const createItem = async (req, res) => {
     if (!dataUser) {
       console.log(body)
       try {
-        body.users_license_num = 66693;
+        body.users_license_num = 0;
         body.users_terms = 0;
-        body.email = "anonimo66693@gmail.com";
-        body.password = "66693";
+        body.email = "a@a.com";
+        body.password = "0";
         body.users_role = "patient";
-        body.users_cellphone = "66693";
+        body.users_cellphone = "0";
         body.mental_careers_mental_careers_id = 1;
         body.status_licenses_status_licenses_id = 1;
         body.users_surnames_order_reverse = null;
@@ -72,22 +73,11 @@ const createItem = async (req, res) => {
         
         const bodyPatientNew = { 
           users_users_id: dataUserNew.users_id, 
-          patients_internal_code: "",
-          activate: 1,
+          activate: 1
         };
-        console.log(bodyPatientNew)
         const dataPatientNew = await patientsModel.create(bodyPatientNew);
-        // // const dataPatient = await patientsModel.create(bodyPatient);
-        // // const patients_id = dataPatient.dataValues.patients_id;
-        // // const patients_code = `NPat-00${patients_id}`;
-        // // const data = await patientsModel.findByPk(patients_id);
-        // // data.dataValues.patients_internal_code = patients_code;
-        // // console.log(data)
-        // // await data.save();
-        console.log(dataPatientNew)
 
         const instProfesIdNew = parseInt(body.instProfesId, 10)
-        console.log(instProfesIdNew)
 
         const bodyProfesPatientNew = { 
           institutions_has_profes_institutions_has_profes_id: instProfesIdNew,
@@ -95,7 +85,6 @@ const createItem = async (req, res) => {
           professional_has_patients_state: 1,
           activate: 1
         };
-        console.log(bodyProfesPatientNew)
 
         const data = await professional_patientsModel.create(bodyProfesPatientNew);
         console.log(data)
@@ -147,61 +136,6 @@ const createItem = async (req, res) => {
         handleHttpError(res, "ERROR_CREATE_ITEMS");
       }
     }
-    // } else {
-    //   console.log(body)
-    //   try {
-    //     body.users_license_num = 666;
-    //     body.users_terms = 0;
-    //     body.email = "anonimo666@gmail.com";
-    //     body.password = "666";
-    //     body.users_role = "patient";
-    //     body.users_cellphone = "666";
-    //     body.mental_careers_mental_careers_id = 1;
-    //     body.status_licenses_status_licenses_id = 1;
-    //     body.users_surnames_order_reverse = null;
-    //     body.users_birth_iso3366 = null;
-    //     body.users_birth_ubigeo = null;
-    //     body.users_residence_iso3366 = null;
-    //     body.users_residence_department = null;
-    //     body.users_residence_province = null;
-    //     body.users_residence_district = null;
-    //     body.users_residence_ubigeo = null;
-    //     body.activate = 1;
-    //     console.log(body)
-    //     const dataUserNew = await usersModel.create(body);
-    //     console.log(dataUserNew)
-        
-    //     const bodyPatientNew = { 
-    //       users_users_id: dataUserNew.users_id, 
-    //       patients_internal_code: "",
-    //       activate: 1,
-    //     };
-    //     console.log(bodyPatientNew)
-    //     const dataPatientNew = await patientsModel.create(bodyPatientNew);
-    //     // // const dataPatient = await patientsModel.create(bodyPatient);
-    //     // // const patients_id = dataPatient.dataValues.patients_id;
-    //     // // const patients_code = `NPat-00${patients_id}`;
-    //     // // const data = await patientsModel.findByPk(patients_id);
-    //     // // data.dataValues.patients_internal_code = patients_code;
-    //     // // console.log(data)
-    //     // // await data.save();
-
-    //     const instProfesIdNew = parseInt(body.instProfesIdNew, 10)
-
-    //     const bodyProfesPatientNew = { 
-    //       institutions_has_profes_institutions_has_profes_id: instProfesIdNew,
-    //       patients_patients_id: dataPatient.patients_id,
-    //       professional_has_patients_state: 1,
-    //       activate: 1
-    //     };
-    //     const data = await professional_patientsModel.create(bodyProfesPatientNew);
-    //     res.status(201);
-    //     res.send({ data });
-    //     return;
-    //   } catch (e) {
-    //     handleHttpError(res, "ERROR_CREATE_ITEMS");
-    //   }
-    // }
   } catch (e) {
     handleHttpError(res, "ERROR_CREATE_ITEMS");
   }

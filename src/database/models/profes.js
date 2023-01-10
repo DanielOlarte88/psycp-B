@@ -11,13 +11,6 @@ const Profes = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    profes_internal_code: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    profes_residence_ubigeo: {
-      type: DataTypes.STRING,
-    },
     users_users_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -48,7 +41,7 @@ Profes.findOneData = function (id) {
       }
     ],
     attributes: [
-      'profes_internal_code', 'profes_id',
+      'profes_id',
       [sequelize.col('user.users_id'), 'users_id'],
       [sequelize.col('user.users_first_surname'), 'users_first_surname'],
       [sequelize.col('user.users_second_surname'), 'users_second_surname'],
@@ -62,9 +55,6 @@ Profes.findOneData = function (id) {
       [sequelize.col('user.users_birth_date'), 'users_birth_date'],
       [sequelize.col('user.users_birth_hour'), 'users_birth_hour'],
       [sequelize.col('user.users_residence_iso3366'), 'users_residence_iso3366'],
-      [sequelize.col('user.users_residence_department'), 'users_residence_department'],
-      [sequelize.col('user.users_residence_province'), 'users_residence_province'],
-      [sequelize.col('user.users_residence_district'), 'users_residence_district'],
       [sequelize.col('user.users_residence_ubigeo'), 'users_residence_ubigeo'],
     ]
   })

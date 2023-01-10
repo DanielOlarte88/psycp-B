@@ -2,6 +2,7 @@ const { handleHttpError } = require("../database/utils/handleError");
 const moment = require('moment')
 let { AgeFromDateString } = require('age-calculator');
 const { patientsModel } = require("../database/models");
+const { usersModel } = require("../database/models");
 const { clinicalHistoriesModel } = require("../database/models");
 
 const getItems = async (req, res) => {
@@ -20,21 +21,27 @@ const getItem = async (req, res) => {
     const { id } = req.params;
     const data = await patientsModel.findOneData(id);
 
+    data.users_birth_ubigeo === null 
+      ? data.users_birth_department = null 
+      : data.users_birth_department = data.users_birth_ubigeo.substr(0, 2); 
+    data.users_birth_ubigeo === null 
+      ? data.users_birth_province = null 
+      : data.users_birth_province = data.users_birth_ubigeo.substr(0, 4); 
+    data.users_birth_ubigeo === null 
+      ? data.users_birth_district = null 
+      : data.users_birth_district = data.users_birth_ubigeo.substr(0, 6); 
+
     var birthDate = data.users_birth_date;
     var a = moment();
     var b = moment(birthDate);
-    
     var years = a.diff(b, 'year');
     b.add(years, 'years');
-    
     var months = a.diff(b, 'months');
     b.add(months, 'months');
-    
     var days = a.diff(b, 'days');
-
     const age = `${years}a  ${months}m  ${days}d`
     data.users_age = age
-    
+
     console.log(data)
     res.send({ data });
   } catch (e) {
@@ -71,15 +78,32 @@ const createItem = async (req, res, next) => {
 const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const patients_id = id;
     const { 
-      patients_internal_code, 
-      users_users_id,
-      activate } = req.body;
-    const data = await patientsModel.findByPk(patients_id);
-    data.patients_internal_code = patients_internal_code;
-    data.users_users_id = users_users_id;
-    data.activate = activate;
+      users_first_surname,
+      users_second_surname,
+      users_first_name,
+      users_second_name,
+      users_third_name,
+      birth_sexes_birth_sexes_id,
+      users_birth_date,
+      users_birth_hour,
+      users_birth_iso3366,
+      users_birth_ubigeo
+    } = req.body;
+    console.log(req.body)
+    const dataPatients = await patientsModel.findByPk(id);
+    const users_id = dataPatients.users_users_id
+    const data = await usersModel.findByPk(users_id);
+    data.users_first_surname = users_first_surname;
+    data.users_second_surname = users_second_surname;
+    data.users_first_name = users_first_name;
+    data.users_second_name = users_second_name;
+    data.users_third_name = users_third_name;
+    data.birth_sexes_birth_sexes_id = birth_sexes_birth_sexes_id;
+    data.users_birth_date = users_birth_date;
+    data.users_birth_hour = users_birth_hour;
+    data.users_birth_iso3366 = users_birth_iso3366;
+    data.users_birth_ubigeo = users_birth_ubigeo;
     await data.save();
     res.status(200);
     res.send({ data });
